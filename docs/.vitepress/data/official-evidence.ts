@@ -82,6 +82,193 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '353952': {
+    planned: 10,
+    retest: 11,
+    admitted: 13,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '北京理工大学2026年硕士学位研究生招生专业目录',
+        url: 'https://grd.bit.edu.cn/zsgz/ssyjs/bslc_ss/44281a10b8ec447a852f4cdc73171c81.htm',
+        publishedAt: '2025-10-10',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院 080100 力学',
+        status: 'verified',
+        value: 10,
+        note: '官网招生目录XLSX中该院080100力学“统考招生人数”为10。'
+      },
+      {
+        type: 'retest-rule',
+        title: '空天科学与技术学院2026年硕士研究生招生复试工作通知',
+        url: 'https://sae.bit.edu.cn/tzgggb/98cf9b74fa2a49f58620bcc1ed499084.htm',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院硕士研究生复试',
+        status: 'verified',
+        note: '学院官网公开复试工作通知及复试名单附件。080100按研究方向分别划线，不存在唯一专业分数线。'
+      },
+      {
+        type: 'retest',
+        title: '空天科学与技术学院2026年硕士研究生招生复试名单',
+        url: 'https://sae.bit.edu.cn/docs//2026-03/07459b3dac18412ab67654c5b175b5e5.pdf',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院 080100 力学（一志愿）',
+        status: 'verified',
+        value: 11,
+        note: 'PDF逐行核验，080100四个研究方向的一志愿复试考生合计11人。'
+      },
+      {
+        type: 'admitted',
+        title: '空天科学与技术学院2026年硕士研究生招生拟录取名单公示',
+        url: 'https://sae.bit.edu.cn/tzgggb/8da9ac48260d4c759c855b7e10231b5b.htm',
+        publishedAt: '2026-03-31',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院 080100 力学（一志愿）',
+        status: 'verified',
+        value: 8,
+        note: '主批拟录取PDF中080100力学拟录取8人。'
+      },
+      {
+        type: 'admitted',
+        title: '空天科学与技术学院2026年硕士研究生招生调剂拟录取名单公示',
+        url: 'https://sae.bit.edu.cn/tzgggb/992a1a92a73e40089b809f66098474cd.htm',
+        publishedAt: '2026-04-14',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院 080100 力学（调剂）',
+        status: 'verified',
+        value: 4,
+        note: '官网正文表格列出4名080100调剂拟录取考生。'
+      },
+      {
+        type: 'admitted',
+        title: '空天科学与技术学院2026年硕士研究生招生调剂拟录取名单公示（第二批）',
+        url: 'https://sae.bit.edu.cn/tzgggb/c00ea6f4ec1d4fa9a7edde2b0d2c3670.htm',
+        publishedAt: '2026-04-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)空天科学与技术学院 080100 力学（调剂递补）',
+        status: 'verified',
+        value: 1,
+        note: '第二批调剂公示新增1名080100拟录取考生；与一志愿8人、首轮调剂4人合计最终13人。'
+      }
+    ]
+  },
+  '353948': {
+    planned: 4,
+    retest: null,
+    admitted: null,
+    scoreLine: 300,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '北京理工大学2026年硕士学位研究生招生专业目录',
+        url: 'https://grd.bit.edu.cn/zsgz/ssyjs/bslc_ss/44281a10b8ec447a852f4cdc73171c81.htm',
+        publishedAt: '2025-10-10',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(202)机电学院 080100 力学',
+        status: 'verified',
+        value: 4,
+        note: '官网招生目录XLSX中该院080100力学“统考招生人数”为4。'
+      },
+      {
+        type: 'score-line',
+        title: '机电学院2026年硕士研究生复试工作安排通知',
+        url: 'https://smen.bit.edu.cn/tzgg/6daf580179ec46e5a4d9b55c7e76bb07.htm',
+        publishedAt: '2026-03-24',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(202)机电学院 080100 力学',
+        status: 'verified',
+        value: 300,
+        note: '学院复试工作附件明确080100力学复试总分线为300。'
+      },
+      {
+        type: 'retest',
+        title: '机电学院2026年硕士研究生复试工作安排通知',
+        url: 'https://smen.bit.edu.cn/tzgg/6daf580179ec46e5a4d9b55c7e76bb07.htm',
+        publishedAt: '2026-03-24',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(202)机电学院 080100 力学',
+        status: 'not-found',
+        note: '现存公开名单未提供足以按080100安全计数的专业列，因此不回填复试人数。'
+      },
+      {
+        type: 'admitted',
+        title: '2026年机电学院全日制硕士研究生调档、政审通知',
+        url: 'https://smen.bit.edu.cn/tzgg/9cfb29cb36ee40f483b55f8196bfe53e.htm',
+        publishedAt: '2026-04-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(202)机电学院硕士研究生拟录取',
+        status: 'partial',
+        note: '官网公开调档名单，但附件缺少可将考生稳定归入080100的专业代码列，不据此强行计数。'
+      }
+    ]
+  },
+  '353844': {
+    planned: 7,
+    retest: 13,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '北京理工大学2026年硕士学位研究生招生专业目录',
+        url: 'https://grd.bit.edu.cn/zsgz/ssyjs/bslc_ss/44281a10b8ec447a852f4cdc73171c81.htm',
+        publishedAt: '2025-10-10',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(280)珠海校区 080100 力学',
+        status: 'verified',
+        value: 7,
+        note: '官网招生目录XLSX中珠海校区080100力学“统考招生人数”为7。'
+      },
+      {
+        type: 'retest-rule',
+        title: '北京理工大学（珠海）2026年硕士研究生招生调剂复试通知',
+        url: 'https://zh.bit.edu.cn/zsjy/yjszs/33a33dbb97e54453a3aa757bbb3c965e.htm',
+        publishedAt: '2026-04-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(280)珠海校区 080100 力学（调剂）',
+        status: 'verified',
+        note: '调剂通知明确080100力学接收调剂，后续官网单独公布调剂复试名单。'
+      },
+      {
+        type: 'retest',
+        title: '北京理工大学（珠海）2026硕士研究生调剂复试名单公示',
+        url: 'https://zh.bit.edu.cn/docs//2026-04/041bb6ddbc4f4ea78d73942454088732.pdf',
+        publishedAt: '2026-04-08',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(280)珠海校区 080100 力学（调剂）',
+        status: 'verified',
+        value: 13,
+        note: 'PDF逐行核验，080100力学调剂复试名单共13人；一志愿复试名单中没有080100记录。'
+      },
+      {
+        type: 'admitted',
+        title: '2026年北京理工大学（珠海）硕士研究生调档、政审通知',
+        url: 'https://zh.bit.edu.cn/zsjy/yjszs/d3dab9ec4d8c4efa8c14efa84736d88a.htm',
+        publishedAt: '2026-05-08',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(280)珠海校区硕士研究生拟录取',
+        status: 'partial',
+        note: '官网公开调档政审名单，但附件未提供可按080100稳定筛选的专业代码列，因此拟录取人数留空。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
