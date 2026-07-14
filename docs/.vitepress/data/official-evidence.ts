@@ -358,6 +358,69 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '351357': {
+    planned: null,
+    retest: null,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest-rule',
+        title: '机械工程学院2026年硕士研究生招生复试录取工作办法（含非全日制）',
+        url: 'https://me.tju.edu.cn/info/2670/49091.htm',
+        publishedAt: '2026-03-22',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)机械工程学院硕士研究生复试录取',
+        status: 'partial',
+        note: '学院官网保留复试录取工作办法通知页，但现存页面已不含原附件，无法复核080100的具体计划或专业线。'
+      },
+      {
+        type: 'retest',
+        title: '机械工程学院2026年硕士研究生复试名单（含专项计划）',
+        url: 'https://me.tju.edu.cn/info/2670/49161.htm',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)机械工程学院 080100 力学',
+        status: 'not-found',
+        note: '官网通知标题页仍可访问，但公示结束后名单附件已撤下，无法按080100安全计数。'
+      },
+      {
+        type: 'admitted',
+        title: '机械工程学院2026年硕士研究生复试成绩及拟录取名单（含专项计划）',
+        url: 'https://me.tju.edu.cn/info/2670/49461.htm',
+        publishedAt: '2026-03-31',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)机械工程学院 080100 力学（第一批）',
+        status: 'not-found',
+        note: '官网通知页明确曾发布复试成绩及拟录取名单，但公示附件现已撤下，无法复核080100人数。'
+      },
+      {
+        type: 'admitted',
+        title: '机械工程学院2026年硕士研究生招生拟录取名单（第二批）',
+        url: 'https://me.tju.edu.cn/info/2670/49671.htm',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)机械工程学院 080100 力学（第二批）',
+        status: 'not-found',
+        note: '第二批拟录取公示标题页仍可访问，但名单附件已撤下，无法判断是否包含080100或进行批次汇总。'
+      },
+      {
+        type: 'catalog',
+        title: '天津大学研究生招生网',
+        url: 'https://yzb.tju.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(201)机械工程学院 080100 力学',
+        status: 'not-found',
+        note: '本轮未定位到当前仍公开且能区分统考、推免口径的2026专业目录原表，因此招生计划留空。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
