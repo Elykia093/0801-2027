@@ -629,6 +629,137 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '347202': {
+    planned: null,
+    retest: 12,
+    admitted: 10,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest-rule',
+        title: '理学院2026年硕士研究生招生考试复试实施细则',
+        url: 'https://cos.neu.edu.cn/2026/0323/c11039a451416/page.htm',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)理学院硕士研究生复试录取',
+        status: 'verified',
+        note: '学院官网公开完整复试实施细则PDF；招生计划需登录学校招生系统查看，因此不从不可复核页面回填。'
+      },
+      {
+        type: 'retest',
+        title: '东北大学理学院2026年硕士研究生招生考试复试成绩公布',
+        url: 'https://cos.neu.edu.cn/2026/0331/c11039a451773/page.htm',
+        publishedAt: '2026-03-31',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)理学院 080100 力学',
+        status: 'verified',
+        value: 12,
+        note: '复试成绩PDF第11页逐行抽取并渲染核验，080100力学共12名复试考生。'
+      },
+      {
+        type: 'admitted',
+        title: '东北大学理学院2026年硕士研究生招生考试拟录取名单',
+        url: 'https://cos.neu.edu.cn/2026/0403/c11039a451976/page.htm',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)理学院 080100 力学',
+        status: 'verified',
+        value: 10,
+        note: '拟录取PDF第9至10页连续列出10名080100力学考生。'
+      },
+      {
+        type: 'catalog',
+        title: '东北大学研究生招生信息网',
+        url: 'https://yz.neu.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)理学院 080100 力学',
+        status: 'not-found',
+        note: '本轮未定位到无需登录且能明确区分统考与推免口径的2026计划原表，招生计划留空。'
+      },
+      {
+        type: 'score-line',
+        title: '理学院2026年硕士研究生招生考试复试实施细则',
+        url: 'https://cos.neu.edu.cn/2026/0323/c11039a451416/page.htm',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)理学院 080100 力学',
+        status: 'not-found',
+        note: '细则未给出080100独立专业线，复试名单最低初试分数不能直接等同于划线，因此不回填。'
+      }
+    ]
+  },
+  '347183': {
+    planned: null,
+    retest: 1,
+    admitted: 1,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest',
+        title: '资源与土木工程学院2026年硕士研究生招生考试复试成绩公布',
+        url: 'http://www.zitu.neu.edu.cn/2026/0331/c1036a451775/page.htm',
+        publishedAt: '2026-03-31',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(006)资源与土木工程学院 080104 工程力学',
+        status: 'verified',
+        value: 1,
+        note: '复试成绩PDF第1页逐行抽取并渲染核验，080104工程力学仅1名复试考生。'
+      },
+      {
+        type: 'admitted',
+        title: '资源与土木工程学院2026年硕士研究生招生考试拟录取名单',
+        url: 'http://www.zitu.neu.edu.cn/2026/0403/c1036a451983/page.htm',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(006)资源与土木工程学院 080104 工程力学（一志愿）',
+        status: 'verified',
+        value: 1,
+        note: '拟录取PDF第1页列出同一名080104工程力学考生。'
+      },
+      {
+        type: 'retest',
+        title: '资源与土木工程学院2026年全国硕士研究生招生考试调剂复试成绩公示',
+        url: 'http://www.zitu.neu.edu.cn/2026/0413/c1036a452361/page.htm',
+        publishedAt: '2026-04-13',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(006)资源与土木工程学院 080104 工程力学（调剂）',
+        status: 'verified',
+        value: 0,
+        note: '调剂复试成绩PDF未出现080104或工程力学，因此无该专业调剂复试新增人数。'
+      },
+      {
+        type: 'catalog',
+        title: '东北大学研究生招生信息网',
+        url: 'https://yz.neu.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(006)资源与土木工程学院 080104 工程力学',
+        status: 'not-found',
+        note: '本轮未定位到无需登录且明确区分统考与推免口径的2026招生计划原表，计划留空。'
+      },
+      {
+        type: 'score-line',
+        title: '资源与土木工程学院2026年硕士研究生招生考试复试成绩公布',
+        url: 'http://www.zitu.neu.edu.cn/2026/0331/c1036a451775/page.htm',
+        publishedAt: '2026-03-31',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(006)资源与土木工程学院 080104 工程力学',
+        status: 'not-found',
+        note: '唯一复试考生初试分数375是样本值，不能等同于学院划定的专业线，因此不回填。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
