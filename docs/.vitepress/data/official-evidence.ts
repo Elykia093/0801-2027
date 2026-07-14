@@ -566,6 +566,69 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '347444': {
+    planned: null,
+    retest: null,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '大连理工大学盘锦校区学院设置',
+        url: 'https://www.dlut.edu.cn/xbxy/pjxq.htm',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(380)盘锦校区化工海洋与生命学院',
+        status: 'partial',
+        note: '学校官网学院设置页确认化工海洋与生命学院官方站点为hyxy.dlut.edu.cn，仅用于确认院系与官网归属。'
+      },
+      {
+        type: 'retest-rule',
+        title: '化工海洋与生命学院研究生招生栏目',
+        url: 'http://hyxy.dlut.edu.cn/zsjy/yjszs.htm',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(380)化工海洋与生命学院 080104 工程力学',
+        status: 'not-found',
+        note: '学院研究生招生栏目当前最新公开的硕士复试录取材料停留在2024年，未找到2026年复试办法或专业线。'
+      },
+      {
+        type: 'retest',
+        title: '化工海洋与生命学院研究生招生栏目',
+        url: 'http://hyxy.dlut.edu.cn/wzlist.jsp?urltype=tree.TreeTempUrl&wbtreeid=1591',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(380)化工海洋与生命学院 080104 工程力学',
+        status: 'not-found',
+        note: '栏目列表未公开2026年硕士复试名单，无法按080104安全计数。'
+      },
+      {
+        type: 'admitted',
+        title: '化工海洋与生命学院研究生招生栏目',
+        url: 'http://hyxy.dlut.edu.cn/wzlist.jsp?urltype=tree.TreeTempUrl&wbtreeid=1591',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(380)化工海洋与生命学院 080104 工程力学',
+        status: 'not-found',
+        note: '栏目列表未公开2026年复试结果或拟录取名单，无法核验拟录取人数和后续调剂批次。'
+      },
+      {
+        type: 'catalog',
+        title: '大连理工大学研究生院',
+        url: 'https://gs.dlut.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(380)化工海洋与生命学院 080104 工程力学',
+        status: 'not-found',
+        note: '本轮未定位到中央招生入口中可按院系代码380和专业代码080104复核的2026统考计划原表。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
