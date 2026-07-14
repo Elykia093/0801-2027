@@ -488,6 +488,84 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '347381': {
+    planned: null,
+    retest: 40,
+    admitted: 22,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest-rule',
+        title: '力学与航空航天学院2026年硕士研究生复试录取办法',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院硕士研究生复试录取',
+        status: 'partial',
+        note: '学院官网保留复试录取办法通知和名单附件，但现存页面未提供可复核的080100计划及专业线表格。'
+      },
+      {
+        type: 'retest',
+        title: '力学与航空航天学院2026年硕士研究生复试名单',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（一志愿）',
+        status: 'verified',
+        value: 24,
+        note: '附件PDF第1页逐行抽取，080100力学一志愿复试名单共24人。'
+      },
+      {
+        type: 'admitted',
+        title: '力学与航空航天学院2026年硕士研究生复试成绩及录取结果',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28582.htm',
+        publishedAt: '2026-03-30',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（一志愿）',
+        status: 'verified',
+        value: 17,
+        note: '附件PDF第1页列出24名080100考生，其中17人的录取结果为“拟录取”。'
+      },
+      {
+        type: 'retest',
+        title: '力学与航空航天学院2026年硕士研究生调剂复试名单',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28852.htm',
+        publishedAt: '2026-04-09',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项调剂）',
+        status: 'verified',
+        value: 16,
+        note: '调剂复试名单PDF列出16名080100力学考生，均为少数民族高层次骨干人才计划南疆高校教师专项。'
+      },
+      {
+        type: 'admitted',
+        title: '力学与航空航天学院2026年全国硕士研究生调剂复试拟录取名单',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28932.htm',
+        publishedAt: '2026-04-13',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项调剂）',
+        status: 'verified',
+        value: 5,
+        note: '调剂拟录取PDF列出5名080100拟录取考生；与一志愿17人合计最终22人。'
+      },
+      {
+        type: 'catalog',
+        title: '大连理工大学2026年硕士研究生招生专业目录',
+        url: 'https://gs.dlut.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学',
+        status: 'not-found',
+        note: '本轮未定位到可公开复核且明确区分统考、专项和推免口径的计划原表，因此招生计划留空。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
