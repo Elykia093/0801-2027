@@ -1,0 +1,26 @@
+{
+  "name": "mechanics-985-admissions",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.9.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "sync:data": "node --experimental-strip-types scripts/scrape-source-details.ts --write",
+    "typecheck": "vue-tsc --noEmit",
+    "verify:data": "node --experimental-strip-types scripts/verify-data.ts",
+    "check": "pnpm verify:data && pnpm typecheck && pnpm docs:build"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "typescript": "5.9.3",
+    "vitepress": "1.6.4",
+    "vue": "3.5.39",
+    "vue-tsc": "3.3.7"
+  }
+}
