@@ -421,6 +421,73 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '347406': {
+    planned: 6,
+    retest: 6,
+    admitted: 6,
+    scoreLine: 300,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '大连理工大学白俄罗斯国立大学联合学院2026年硕士研究生复试录取办法',
+        url: 'https://dbji.dlut.edu.cn/info/1208/12431.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(490)白俄罗斯国立大学联合学院 080104 工程力学',
+        status: 'verified',
+        value: 6,
+        note: '复试录取办法PDF明确080104工程力学全日制统考招生计划6人。'
+      },
+      {
+        type: 'score-line',
+        title: '大连理工大学白俄罗斯国立大学联合学院2026年硕士研究生复试录取办法',
+        url: 'https://dbji.dlut.edu.cn/info/1208/12431.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(490)白俄罗斯国立大学联合学院 080104 工程力学',
+        status: 'verified',
+        value: 300,
+        note: '办法PDF明确专业线总分300，单科线45/45/70/75。'
+      },
+      {
+        type: 'retest-rule',
+        title: '大连理工大学白俄罗斯国立大学联合学院2026年硕士研究生复试录取办法',
+        url: 'https://dbji.dlut.edu.cn/info/1208/12431.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(490)白俄罗斯国立大学联合学院硕士研究生复试录取',
+        status: 'verified',
+        note: '官网公开完整复试录取办法、复试名单及相关附件。'
+      },
+      {
+        type: 'retest',
+        title: '大连理工大学白俄罗斯国立大学联合学院2026年硕士研究生复试名单',
+        url: 'https://dbji.dlut.edu.cn/info/1208/12431.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(490)白俄罗斯国立大学联合学院 080104 工程力学',
+        status: 'verified',
+        value: 6,
+        note: '附件PDF逐行抽取并渲染目视核验，080104工程力学复试名单共6人。'
+      },
+      {
+        type: 'admitted',
+        title: '大连理工大学白俄罗斯国立大学联合学院2026年硕士研究生复试成绩及拟录取名单公示',
+        url: 'https://dbji.dlut.edu.cn/info/1208/12501.htm',
+        publishedAt: '2026-03-27',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(490)白俄罗斯国立大学联合学院 080104 工程力学',
+        status: 'verified',
+        value: 6,
+        note: '工程力学专业独立PDF列出6名080104考生，录取结果均为“拟录取”。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
