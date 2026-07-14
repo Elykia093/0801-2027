@@ -269,6 +269,95 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '353278': {
+    planned: null,
+    retest: null,
+    admitted: 12,
+    scoreLine: 280,
+    evidence: [
+      {
+        type: 'score-line',
+        title: '中国农业大学理学院2026年硕士研究生复试工作实施细则（有更新）',
+        url: 'https://sci.cau.edu.cn/art/2026/3/23/art_40525_1103789.html',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 0801 力学',
+        status: 'verified',
+        value: 280,
+        note: '学院官网复试细则表格明确0801力学总分线280，单科线40/40/75/75。'
+      },
+      {
+        type: 'retest-rule',
+        title: '中国农业大学理学院2026年硕士研究生复试工作实施细则（有更新）',
+        url: 'https://sci.cau.edu.cn/art/2026/3/23/art_40525_1103789.html',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院硕士研究生复试录取',
+        status: 'verified',
+        note: '官网正文公开复试时间、资格审查、成绩计算、录取和调剂规则。'
+      },
+      {
+        type: 'retest',
+        title: '理学院2026年硕士研究生招生考试力学调剂生复试结果公示',
+        url: 'https://sci.cau.edu.cn/art/2026/4/10/art_40525_1106986.html',
+        publishedAt: '2026-04-10',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 080100 力学（调剂）',
+        status: 'partial',
+        value: 13,
+        note: '官网正文表格列出13名080100调剂复试考生；一志愿完整复试名单未公开，因此不把13回填为全年复试总人数。'
+      },
+      {
+        type: 'admitted',
+        title: '理学院2026年硕士研究生招生考试一志愿拟录取名单公示',
+        url: 'https://sci.cau.edu.cn/art/2026/4/3/art_40525_1106108.html',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 080100 力学（一志愿）',
+        status: 'verified',
+        value: 4,
+        note: '公示DOCX逐表格行核验，080100力学一志愿拟录取4人。'
+      },
+      {
+        type: 'admitted',
+        title: '理学院2026年硕士研究生招生考试调剂拟录取名单公示',
+        url: 'https://sci.cau.edu.cn/art/2026/4/12/art_40525_1107221.html',
+        publishedAt: '2026-04-12',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 080100 力学（调剂）',
+        status: 'verified',
+        value: 8,
+        note: '公示DOCX逐表格行核验，080100力学调剂拟录取8人；与一志愿4人合计12人。'
+      },
+      {
+        type: 'admitted',
+        title: '理学院2026年硕士研究生招生考试调剂拟录取名单（递补）公示',
+        url: 'https://sci.cau.edu.cn/art/2026/4/16/art_40525_1107884.html',
+        publishedAt: '2026-04-16',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 080100 力学（调剂递补）',
+        status: 'verified',
+        note: '递补附件含1名080100考生，用于替换放弃资格的原拟录取考生，不增加既有8个调剂录取名额；最终总数仍为12人。'
+      },
+      {
+        type: 'catalog',
+        title: '中国农业大学2026年硕士研究生招生专业目录',
+        url: 'https://yz.cau.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(310)理学院 080100 力学',
+        status: 'not-found',
+        note: '本轮未定位到可公开复核且明确区分统考与推免的专业目录原表，因此招生计划不回填。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
