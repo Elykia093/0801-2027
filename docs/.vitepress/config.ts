@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '985 力学招生数据',
+  base: '/0801-2027/',
   description: '招收 0801 力学相关专业的 985 院校招生、复试与拟录取数据',
   cleanUrls: true,
   lastUpdated: true,

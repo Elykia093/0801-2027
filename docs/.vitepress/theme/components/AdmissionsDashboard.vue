@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import { computed, ref } from 'vue'
 import {
   majorLabels,
@@ -177,7 +178,7 @@ const metricTitle = (metric: CoverageMetric) => {
             </td>
             <td>
               <div class="source-links">
-                <a :href="`/details#school-${school.code}`">本站详情</a>
+                <a :href="withBase(`/details#school-${school.code}`)">本站详情</a>
                 <a :href="school.officialPortal" target="_blank" rel="noopener noreferrer">院校官网</a>
                 <a :href="school.aggregatorPage" target="_blank" rel="noopener noreferrer">聚合详情</a>
               </div>
