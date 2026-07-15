@@ -2,7 +2,156 @@ import type { OfficialRecordData } from './models.ts'
 
 const accessedAt = '2026-07-11'
 
+const ucasImechEvidence = (
+  majorCode: string,
+  majorName: string,
+  planned: number,
+  admitted: number
+): OfficialRecordData => {
+  const scope = `(80007)力学研究所 ${majorCode} ${majorName}`
+  return {
+    planned,
+    retest: null,
+    admitted,
+    scoreLine: 322,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '中国科学院大学2026年硕士招生目录：力学研究所',
+        url: 'https://admission.ucas.ac.cn/info/ZhaoshengDanweiDetail/9e780c52-baf5-4020-b453-bc4510579559/8000712026',
+        publishedAt: null,
+        accessedAt: '2026-07-15',
+        year: '2026',
+        scope,
+        status: 'verified',
+        value: planned,
+        note: `目录明确${majorCode}预计统考招生${planned}人；实际分专业计划以正式下达结果为准。`
+      },
+      {
+        type: 'score-line',
+        title: '力学研究所2026年招收全国统考硕士研究生复试分数线及规程',
+        url: 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/zsxx/202603/t20260323_8168665.html',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-15',
+        year: '2026',
+        scope,
+        status: 'verified',
+        value: 322,
+        note: '学术型复试线为总分322，满分100分科目不低于33，满分大于100分科目不低于50。'
+      },
+      {
+        type: 'retest',
+        title: '力学研究所2026年复试人员名单',
+        url: 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/zsxx/202603/P020260323675462268029.pdf',
+        publishedAt: '2026-03-23',
+        accessedAt: '2026-07-15',
+        year: '2026',
+        scope: '(80007)力学研究所全国统考硕士复试名单',
+        status: 'partial',
+        note: '附件共10人，其中1人备注专业型、1人备注退役士兵计划，但未列报考专业，无法把学术型考生可靠拆分到4个0801专业。'
+      },
+      {
+        type: 'admitted',
+        title: '力学研究所2026年招收全国统考硕士研究生拟录取名单公示',
+        url: 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/zsxx/202604/t20260408_8183099.html',
+        publishedAt: '2026-04-08',
+        accessedAt: '2026-07-15',
+        year: '2026',
+        scope,
+        status: 'verified',
+        value: admitted,
+        note: `一志愿拟录取名单按拟录取专业逐行统计，${majorCode}为${admitted}人。`
+      },
+      {
+        type: 'admitted',
+        title: '力学研究所2026年招收全国统考硕士研究生拟录取名单公示（调剂）',
+        url: 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/zsxx/202604/t20260423_8190604.html',
+        publishedAt: '2026-04-23',
+        accessedAt: '2026-07-15',
+        year: '2026',
+        scope,
+        status: 'verified',
+        value: 0,
+        note: '调剂拟录取19人全部为085601材料工程，没有新增0801力学专业拟录取。'
+      }
+    ]
+  }
+}
+
+const hitAirspaceMechanicsEvidence: OfficialRecordData = {
+  planned: 47,
+  retest: 49,
+  admitted: 47,
+  scoreLine: 355,
+  evidence: [
+    {
+      type: 'catalog',
+      title: '哈尔滨工业大学航天学院2026年硕士研究生复试及录取工作方案',
+      url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
+      publishedAt: '2026-03-21',
+      accessedAt: '2026-07-16',
+      year: '2026',
+      scope: '(001)航天学院 085500机械 11、42、61空天力学方向',
+      status: 'verified',
+      value: 47,
+      note: '方案逐方向列明计划：11空天力学10人、42空天力学（郑州基地）13人、61空天力学（苏州基地）24人，合计47人。'
+    },
+    {
+      type: 'score-line',
+      title: '哈尔滨工业大学航天学院2026年硕士研究生复试及录取工作方案',
+      url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
+      publishedAt: '2026-03-21',
+      accessedAt: '2026-07-16',
+      year: '2026',
+      scope: '(001)航天学院 085500机械-空天力学',
+      status: 'verified',
+      value: 355,
+      note: '复试线为355分；政治50、外语45、业务课一70、业务课二70。'
+    },
+    {
+      type: 'retest-rule',
+      title: '哈尔滨工业大学航天学院2026年硕士研究生复试及录取工作方案',
+      url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
+      publishedAt: '2026-03-21',
+      accessedAt: '2026-07-16',
+      year: '2026',
+      scope: '(001)航天学院 085500机械-空天力学',
+      status: 'verified',
+      note: '复试成绩由专业综合考核60%和面试40%构成；初试、复试各占录取总成绩50%。'
+    },
+    {
+      type: 'retest',
+      title: '哈尔滨工业大学航天学院2026年硕士研究生招生考试复试名单',
+      url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
+      publishedAt: '2026-03-21',
+      accessedAt: '2026-07-16',
+      year: '2026',
+      scope: '(001)航天学院 085500机械 11、42、61空天力学方向',
+      status: 'verified',
+      value: 49,
+      note: '名单逐行统计：方向11为21人、方向42为13人、方向61为15人，合计49人。'
+    },
+    {
+      type: 'admitted',
+      title: '哈尔滨工业大学航天学院2026年硕士研究生拟录取名单公示',
+      url: 'https://sa.hit.edu.cn/2026/0401/c6582a389202/page.htm',
+      publishedAt: '2026-04-01',
+      accessedAt: '2026-07-16',
+      year: '2026',
+      scope: '(001)航天学院 085500机械 11、42、61空天力学方向',
+      status: 'verified',
+      value: 47,
+      note: '名单逐行统计：方向11为10人、方向42为13人、方向61为24人，合计47人；均为一志愿录取。'
+    }
+  ]
+}
+
 export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
+  'ucas-imech-080101': ucasImechEvidence('080101', '一般力学与力学基础', 0, 0),
+  'ucas-imech-080102': ucasImechEvidence('080102', '固体力学', 1, 3),
+  'ucas-imech-080103': ucasImechEvidence('080103', '流体力学', 1, 1),
+  'ucas-imech-080104': ucasImechEvidence('080104', '工程力学', 0, 0),
+  'hit-aero-085500-airspace-mechanics': hitAirspaceMechanicsEvidence,
   '354069': {
     planned: 15,
     retest: 15,
@@ -1850,6 +1999,579 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         status: 'verified',
         value: 1,
         note: 'PDF明确1名原报机械工程考生院内调剂至080100并拟录取；最终080100拟录取合计2人。'
+      }
+    ]
+  },
+  '342023': {
+    planned: 18,
+    retest: 22,
+    admitted: null,
+    scoreLine: 350,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '上海交通大学2026年硕士研究生招生复试办法查询',
+        url: 'https://ga.sjtu.edu.cn/zsgl/fsgl/fsbf_ss.aspx',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(010)船舶海洋与建筑工程学院 080100 力学',
+        status: 'verified',
+        value: 18,
+        note: '官网查询结果明确080100力学统考招生计划18人；聚合计划15人与官网不符。'
+      },
+      {
+        type: 'score-line',
+        title: '上海交通大学2026年硕士研究生招生复试办法查询',
+        url: 'https://ga.sjtu.edu.cn/zsgl/fsgl/fsbf_ss.aspx',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(010)船舶海洋与建筑工程学院 080100 力学',
+        status: 'verified',
+        value: 350,
+        note: '官网查询结果明确080100力学复试总分线为350分。'
+      },
+      {
+        type: 'retest',
+        title: '上海交通大学2026年硕士研究生招生复试办法查询',
+        url: 'https://ga.sjtu.edu.cn/zsgl/fsgl/fsbf_ss.aspx',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(010)船舶海洋与建筑工程学院 080100 力学',
+        status: 'verified',
+        value: 22,
+        note: '官网查询结果明确080100力学进入复试22人。'
+      }
+    ]
+  },
+  '340072': {
+    planned: null,
+    retest: 21,
+    admitted: 14,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest',
+        title: '东南大学土木工程学院2026年硕士研究生复试结果',
+        url: 'https://civil.seu.edu.cn/_upload/article/files/96/90/e757f4be4ac3a7531bad5c253533/456dd4b3-a35e-4d4e-b83c-fc61c9528a6a.pdf',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(005)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 21,
+        note: '复试结果PDF逐行核验，080100力学共21名考生，备注列均为空。'
+      },
+      {
+        type: 'admitted',
+        title: '东南大学土木工程学院2026年硕士研究生复试结果',
+        url: 'https://civil.seu.edu.cn/_upload/article/files/96/90/e757f4be4ac3a7531bad5c253533/456dd4b3-a35e-4d4e-b83c-fc61c9528a6a.pdf',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(005)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 14,
+        note: '复试结果PDF逐行核验，080100力学拟录取14人。'
+      },
+      {
+        type: 'admitted',
+        title: '东南大学2026年硕士研究生拟录取名单公示',
+        url: 'https://yzb.seu.edu.cn/2026/0525/c6676a568643/page.htm',
+        publishedAt: '2026-05-25',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(005)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 14,
+        note: '学校公示附件XLS按录取专业筛选，080100力学共14人，与学院复试结果一致。'
+      },
+      {
+        type: 'score-line',
+        title: '东南大学土木工程学院2026年硕士研究生复试结果',
+        url: 'https://civil.seu.edu.cn/_upload/article/files/96/90/e757f4be4ac3a7531bad5c253533/456dd4b3-a35e-4d4e-b83c-fc61c9528a6a.pdf',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(005)土木工程学院 080100 力学',
+        status: 'partial',
+        note: '官网结果PDF中最低初试分为329，不能支持聚合页的376分；本轮未找到显式专业复试线，因此留空。'
+      }
+    ]
+  },
+  '336994': {
+    planned: 4,
+    retest: 8,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '浙江大学航空航天学院2026年硕士研究生复试录取方案',
+        url: 'http://saa.zju.edu.cn/2026/0319/c67589a3142154/page.htm',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(240)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 4,
+        note: '学院复试录取方案明确080100力学统考招生计划4人。'
+      },
+      {
+        type: 'retest',
+        title: '浙江大学航空航天学院2026年硕士研究生复试名单',
+        url: 'http://saa.zju.edu.cn/_upload/article/files/fb/b2/410cf27b438187ca36acdfbff781/d1fcb44c-2540-43e8-91de-62c6f5261c3d.pdf',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(240)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 8,
+        note: '复试名单PDF逐行核验，080100含6名普通统考考生和2名专项计划考生，共8人。'
+      },
+      {
+        type: 'score-line',
+        title: '浙江大学航空航天学院2026年硕士研究生复试录取方案',
+        url: 'http://saa.zju.edu.cn/2026/0319/c67589a3142154/page.htm',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(240)航空航天学院 080100 力学',
+        status: 'partial',
+        note: '方案未给出可唯一映射到080100的单一专业复试线，因此不回填聚合页分数。'
+      }
+    ]
+  },
+  '331532': {
+    planned: null,
+    retest: null,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'score-line',
+        title: '山东大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求',
+        url: 'https://www.yz.sdu.edu.cn/info/1025/1365.htm',
+        publishedAt: '2026-03-17',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(016)土建与水利学院 080100 力学',
+        status: 'partial',
+        note: '学校页仅给基本要求，学院现存公开页面未保留可唯一对应080100的专业线与复试名单。'
+      },
+      {
+        type: 'admitted',
+        title: '山东大学2026年硕士研究生拟录取名单公示',
+        url: 'https://www.yz.sdu.edu.cn/info/1025/1404.htm',
+        publishedAt: '2026-05-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(016)土建与水利学院 080100 力学',
+        status: 'not-found',
+        note: '学校公示页仍可访问，但名单附件在公示结束后已撤下，无法按080100复核人数。'
+      },
+      {
+        type: 'admitted',
+        title: '山东大学2026年硕士研究生拟录取名单补录公示',
+        url: 'https://www.yz.sdu.edu.cn/info/1025/1406.htm',
+        publishedAt: '2026-05-14',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(016)土建与水利学院 080100 力学',
+        status: 'not-found',
+        note: '补录公示附件同样已撤下，无法判断是否影响080100；聚合3/3/3/371均不据此采用。'
+      }
+    ]
+  },
+  '327479': {
+    planned: null,
+    retest: 3,
+    admitted: 3,
+    scoreLine: 290,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://civ.whu.edu.cn/info/1188/70751.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080102 固体力学',
+        status: 'partial',
+        value: 4,
+        note: '细则只公布0801力学一级学科共享计划4人，不能安全拆分到固体力学与工程力学。'
+      },
+      {
+        type: 'score-line',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://civ.whu.edu.cn/info/1188/70751.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080102 固体力学',
+        status: 'verified',
+        value: 290,
+        note: '学院按一级学科0801划线，总分290，固体力学适用该线。'
+      },
+      {
+        type: 'retest',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试考核结果公示',
+        url: 'https://civ.whu.edu.cn/info/1188/71011.htm',
+        publishedAt: '2026-04-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080102 固体力学',
+        status: 'verified',
+        value: 3,
+        note: '结果附件逐行核验，固体力学参加复试3人。'
+      },
+      {
+        type: 'admitted',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试考核结果公示',
+        url: 'https://civ.whu.edu.cn/info/1188/71011.htm',
+        publishedAt: '2026-04-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080102 固体力学',
+        status: 'verified',
+        value: 3,
+        note: '结果附件逐行核验，固体力学3名复试考生均拟录取。'
+      }
+    ]
+  },
+  '327478': {
+    planned: null,
+    retest: 1,
+    admitted: 1,
+    scoreLine: 290,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://civ.whu.edu.cn/info/1188/70751.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080104 工程力学',
+        status: 'partial',
+        value: 4,
+        note: '细则只公布0801力学一级学科共享计划4人，不能安全拆分到工程力学与固体力学。'
+      },
+      {
+        type: 'score-line',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://civ.whu.edu.cn/info/1188/70751.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080104 工程力学',
+        status: 'verified',
+        value: 290,
+        note: '学院按一级学科0801划线，总分290，工程力学适用该线。'
+      },
+      {
+        type: 'retest',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试考核结果公示',
+        url: 'https://civ.whu.edu.cn/info/1188/71011.htm',
+        publishedAt: '2026-04-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080104 工程力学',
+        status: 'verified',
+        value: 1,
+        note: '结果附件逐行核验，工程力学参加复试1人。'
+      },
+      {
+        type: 'admitted',
+        title: '武汉大学土木建筑工程学院2026年硕士研究生复试考核结果公示',
+        url: 'https://civ.whu.edu.cn/info/1188/71011.htm',
+        publishedAt: '2026-04-07',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(210)土木建筑工程学院 080104 工程力学',
+        status: 'verified',
+        value: 1,
+        note: '结果附件逐行核验，工程力学1名复试考生拟录取。'
+      }
+    ]
+  },
+  '327502': {
+    planned: 2,
+    retest: 1,
+    admitted: 1,
+    scoreLine: 320,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '武汉大学水利水电学院2026年硕士研究生招生复试录取工作细则',
+        url: 'https://swrh.whu.edu.cn/info/1041/110641.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(206)水利水电学院 080103 流体力学',
+        status: 'verified',
+        value: 2,
+        note: '学院细则表格明确080103流体力学招生计划2人。'
+      },
+      {
+        type: 'score-line',
+        title: '武汉大学水利水电学院2026年硕士研究生招生复试录取工作细则',
+        url: 'https://swrh.whu.edu.cn/info/1041/110641.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(206)水利水电学院 080103 流体力学',
+        status: 'verified',
+        value: 320,
+        note: '学院细则表格明确080103流体力学总分线320，单科线50/50/90/90。'
+      },
+      {
+        type: 'retest',
+        title: '武汉大学水利水电学院2026年硕士研究生招生复试录取工作细则',
+        url: 'https://swrh.whu.edu.cn/info/1041/110641.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(206)水利水电学院 080103 流体力学',
+        status: 'verified',
+        value: 1,
+        note: '复试名单附件逐行核验，080103流体力学参加复试1人。'
+      },
+      {
+        type: 'admitted',
+        title: '武汉大学水利水电学院2026年硕士研究生拟录取结果公示',
+        url: 'https://swrh.whu.edu.cn/info/1041/111131.htm',
+        publishedAt: '2026-04-06',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(206)水利水电学院 080103 流体力学',
+        status: 'verified',
+        value: 1,
+        note: '拟录取结果附件逐行核验，080103流体力学拟录取1人。'
+      }
+    ]
+  },
+  '325216': {
+    planned: 12,
+    retest: 13,
+    admitted: 12,
+    scoreLine: 326,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '湖南大学机械与运载工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://mve.hnu.edu.cn/info/1609/18225.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)机械与运载工程学院 080100 力学',
+        status: 'verified',
+        value: 12,
+        note: '学院细则明确080100力学统考计划12人，其中含少数民族高层次骨干人才计划1人。'
+      },
+      {
+        type: 'score-line',
+        title: '湖南大学机械与运载工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://mve.hnu.edu.cn/info/1609/18225.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)机械与运载工程学院 080100 力学',
+        status: 'verified',
+        value: 326,
+        note: '学院细则明确080100力学复试总分线326。'
+      },
+      {
+        type: 'retest',
+        title: '湖南大学机械与运载工程学院2026年硕士研究生复试录取工作实施细则',
+        url: 'https://mve.hnu.edu.cn/info/1609/18225.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)机械与运载工程学院 080100 力学',
+        status: 'verified',
+        value: 13,
+        note: '复试名单附件逐行核验，080100共13人，其中少干计划1人。'
+      },
+      {
+        type: 'admitted',
+        title: '湖南大学机械与运载工程学院2026年硕士研究生复试成绩及拟录取结果公示',
+        url: 'https://mve.hnu.edu.cn/info/1609/18240.htm',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(002)机械与运载工程学院 080100 力学',
+        status: 'verified',
+        value: 12,
+        note: '结果附件逐行核验，080100力学拟录取12人。'
+      }
+    ]
+  },
+  '325007': {
+    planned: 15,
+    retest: 15,
+    admitted: null,
+    scoreLine: 305,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '中南大学土木工程学院2026年招收攻读硕士学位研究生复试方案',
+        url: 'https://civil.csu.edu.cn/info/2019/12345.htm',
+        publishedAt: '2026-03-25',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(048)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 15,
+        note: '方案列明080100总计划28人、含推免13人，公开招考计划为15人。'
+      },
+      {
+        type: 'score-line',
+        title: '中南大学土木工程学院2026年招收攻读硕士学位研究生复试方案',
+        url: 'https://civil.csu.edu.cn/info/2019/12345.htm',
+        publishedAt: '2026-03-25',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(048)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 305,
+        note: '方案表2明确080100力学总分线305，单科线45/75。'
+      },
+      {
+        type: 'retest',
+        title: '中南大学土木工程学院2026年硕士研究生复试名单',
+        url: 'https://civil.csu.edu.cn/info/2019/12345.htm',
+        publishedAt: '2026-03-25',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(048)土木工程学院 080100 力学',
+        status: 'verified',
+        value: 15,
+        note: '页面附件PDF逐行核验，序号9至23共15名力学考生。'
+      },
+      {
+        type: 'admitted',
+        title: '中南大学土木工程学院学院公告',
+        url: 'https://civil.csu.edu.cn/index/xygg.htm',
+        publishedAt: null,
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(048)土木工程学院 080100 力学',
+        status: 'not-found',
+        note: '当前学院公告未保留一志愿复试结果公示，学校拟录取名单亦未提供可复核附件，因此不采聚合拟录取15人。'
+      }
+    ]
+  },
+  '323677': {
+    planned: 5,
+    retest: 7,
+    admitted: 5,
+    scoreLine: 335,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '中山大学航空航天学院2026年硕士研究生复试录取实施细则',
+        url: 'https://saa.sysu.edu.cn/article/799',
+        publishedAt: '2026-03-18',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(760)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 5,
+        note: '实施细则表格列明080100总计划15人、已招推免10人、公开招考计划5人。'
+      },
+      {
+        type: 'score-line',
+        title: '中山大学航空航天学院2026年硕士研究生复试录取实施细则',
+        url: 'https://saa.sysu.edu.cn/article/799',
+        publishedAt: '2026-03-18',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(760)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 335,
+        note: '实施细则明确080100总分线335，单科线45/45/60/60。'
+      },
+      {
+        type: 'retest',
+        title: '中山大学航空航天学院2026年硕士生复试名单',
+        url: 'https://saa.sysu.edu.cn/article/799',
+        publishedAt: '2026-03-18',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(760)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 7,
+        note: '附件PDF逐行核验，080100名单含6名普通统考考生和1名立功表彰军人免初试考生，共7人。'
+      },
+      {
+        type: 'admitted',
+        title: '中山大学航空航天学院关于公布2026年硕士研究生复试结果的通知',
+        url: 'https://saa.sysu.edu.cn/article/803',
+        publishedAt: '2026-03-27',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(760)航空航天学院 080100 力学',
+        status: 'verified',
+        value: 5,
+        note: '结果PDF逐行核验，080100普通计划拟录取5人；另1名统考生拟不录取，免初试考生放弃复试。'
+      }
+    ]
+  },
+  '323019': {
+    planned: 8,
+    retest: 12,
+    admitted: 8,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '华南理工大学土木与交通学院2026年硕士研究生招生复试成绩通知',
+        url: 'https://www2.scut.edu.cn/jtxy/2026/0325/c35311a621316/page.htm',
+        publishedAt: '2026-03-25',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(103)土木与交通学院 080100 力学',
+        status: 'verified',
+        value: 8,
+        note: '通知附表明确080100力学可用招生计划8人。'
+      },
+      {
+        type: 'retest',
+        title: '华南理工大学土木与交通学院2026年硕士研究生复试名单、复试要求及注意事项',
+        url: 'https://www2.scut.edu.cn/jtxy/2026/0316/c35311a620148/page.htm',
+        publishedAt: '2026-03-16',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(103)土木与交通学院 080100 力学',
+        status: 'verified',
+        value: 12,
+        note: '附件PDF第一页逐行核验，080100力学复试考生共12人。'
+      },
+      {
+        type: 'admitted',
+        title: '华南理工大学土木与交通学院2026年全日制硕士统考生拟录取名单',
+        url: 'https://www2.scut.edu.cn/jtxy/2026/0403/c35311a622442/page.htm',
+        publishedAt: '2026-04-03',
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(103)土木与交通学院 080100 力学',
+        status: 'verified',
+        value: 8,
+        note: '拟录取XLSX经结构检查和视觉复核，080100力学共8人。'
+      },
+      {
+        type: 'score-line',
+        title: '华南理工大学2026年硕士研究生复试方案查询',
+        url: 'https://yanzhao.scut.edu.cn/open/master/Fsfa.aspx',
+        publishedAt: null,
+        accessedAt: '2026-07-16',
+        year: '2026',
+        scope: '(103)土木与交通学院 080100 力学',
+        status: 'not-found',
+        note: '学院通知引用的方案查询入口现已跳转统一认证；名单最低初试分305不能替代显式专业线，且不能支持聚合349，因此官网专业线留空。'
       }
     ]
   }

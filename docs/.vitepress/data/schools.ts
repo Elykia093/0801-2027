@@ -1,6 +1,12 @@
 import { officialEvidenceByRecord } from './official-evidence.ts'
+import { manualAdmissionRecords } from './manual-records.ts'
 import { admissionRecords as generatedAdmissionRecords } from './source-records.generated.ts'
-import type { AdmissionRecord, CoverageMetric, SchoolAdmission } from './models.ts'
+import type {
+  AdmissionRecord,
+  CoverageMetric,
+  SchoolAdmission,
+  SourceAdmissionRecord
+} from './models.ts'
 
 export type {
   AdmissionRecord,
@@ -19,10 +25,21 @@ export const majorLabels: Record<string, string> = {
   '080103': '流体力学',
   '080104': '工程力学',
   '0801J1': '生态力学',
-  '0801J7': '低空技术与工程'
+  '0801J7': '低空技术与工程',
+  '085500': '机械（空天力学）'
+}
+
+export const isOfficialSourceRecord = (record: Pick<SourceAdmissionRecord, 'sourceKind'>) =>
+  record.sourceKind === 'official'
+
+export const isProfessionalDegree = (majorCode: string) => majorCode.startsWith('085')
+
+export const schoolSearchAliases: Record<string, string[]> = {
+  '80007': ['国科大', '国科大力学所', '中科院力学所']
 }
 
 const officialPortals: Record<string, string> = {
+  '80007': 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/',
   '10006': 'https://yzb.buaa.edu.cn/',
   '10007': 'https://grd.bit.edu.cn/zsgz/ssyjs/index.htm',
   '10019': 'https://yz.cau.edu.cn/',
@@ -51,6 +68,11 @@ const officialPortals: Record<string, string> = {
   '92002': 'https://yjszs.nudt.edu.cn/'
 }
 
+const officialSourcePages: Record<string, string> = {
+  '80007':
+    'https://admission.ucas.ac.cn/info/ZhaoshengDanweiDetail/9e780c52-baf5-4020-b453-bc4510579559/8000712026'
+}
+
 const aggregateMetric = (
   records: AdmissionRecord[],
   key: 'planned' | 'retest' | 'admitted'
@@ -63,7 +85,7 @@ const aggregateMetric = (
   }
 }
 
-const admissionRecords: AdmissionRecord[] = generatedAdmissionRecords.map((record) => {
+const admissionRecords: AdmissionRecord[] = [...generatedAdmissionRecords, ...manualAdmissionRecords].map((record) => {
   const official = officialEvidenceByRecord[record.id]
   return {
     ...record,
@@ -102,7 +124,7 @@ export const schools: SchoolAdmission[] = [...recordsBySchool.entries()]
       retest: aggregateMetric(records, 'retest'),
       admitted: aggregateMetric(records, 'admitted'),
       officialPortal: officialPortals[code] ?? '',
-      aggregatorPage: `https://ksg.hongguoyan.com/schools/detail/${code}`,
+      aggregatorPage: officialSourcePages[code] ?? `https://ksg.hongguoyan.com/schools/detail/${code}`,
       records
     }
   })
@@ -134,7 +156,7 @@ export const snapshot = {
 } as const
 
 export const referenceBaseline = [
-  { field: '院校、专业代码与院系', reference: true, site: true, note: '本站覆盖 39 条逐院系记录' },
+  { field: '院校、专业代码与院系', reference: true, site: true, note: '本站覆盖 44 条逐院系记录' },
   { field: '985/211/双一流、地区、学科评估', reference: '部分', site: true, note: '本站额外展示地区与双一流状态' },
   { field: '培养方式、学制', reference: true, site: true, note: '缺失时明确标记待核验' },
   { field: '研究方向与初试科目', reference: true, site: true, note: '逐方向保留完整科目组合' },
@@ -144,7 +166,7 @@ export const referenceBaseline = [
   { field: '历年招生计划', reference: true, site: true, note: '按来源页已有年份展示' },
   { field: '单科线、总分线、最高/最低分', reference: true, site: true, note: '按年完整展开' },
   { field: '复试、录取、复录比、一志愿、调剂', reference: true, site: true, note: '按年完整展开并保留缺失值' },
-  { field: '26 所 985 横向筛选和汇总', reference: false, site: true, note: '支持专业、完整度和人数排序' },
+  { field: '26 所 985、国科大力学所与官网核验专硕横向筛选和汇总', reference: false, site: true, note: '支持专业、完整度和人数排序' },
   { field: '逐条官网原文与核验值', reference: false, site: true, note: '展示官网计划、复试、拟录取、分数线及冲突说明' },
   { field: '字段覆盖率与缺失值口径', reference: false, site: true, note: '不把 0/缺失冒充真实人数' }
 ] as const

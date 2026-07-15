@@ -2,7 +2,10 @@
 import { withBase } from 'vitepress'
 import { computed, ref } from 'vue'
 import {
+  isOfficialSourceRecord,
+  isProfessionalDegree,
   majorLabels,
+  schoolSearchAliases,
   schools,
   snapshot,
   type CoverageMetric,
@@ -32,7 +35,10 @@ const filteredSchools = computed(() => {
     const matchesQuery =
       normalizedQuery.length === 0 ||
       school.name.toLocaleLowerCase('zh-CN').includes(normalizedQuery) ||
-      school.code.includes(normalizedQuery)
+      school.code.includes(normalizedQuery) ||
+      (schoolSearchAliases[school.code] ?? []).some((alias) =>
+        alias.toLocaleLowerCase('zh-CN').includes(normalizedQuery)
+      )
     const matchesMajor = major.value === 'all' || school.majors.includes(major.value)
     const complete = hasCompleteMetrics(school)
     const matchesCompleteness =
@@ -54,7 +60,7 @@ const filteredSchools = computed(() => {
 const sumMetric = (key: 'planned' | 'retest' | 'admitted') =>
   schools.reduce((sum, school) => sum + (school[key].value ?? 0), 0)
 
-const completeSchoolCount = computed(() => schools.filter(hasCompleteMetrics).length)
+const completeSchoolCount = computed(() => filteredSchools.value.filter(hasCompleteMetrics).length)
 
 const metricTitle = (metric: CoverageMetric) => {
   if (metric.value === null) return '来源数据未提供人数'
@@ -65,16 +71,16 @@ const metricTitle = (metric: CoverageMetric) => {
 
 <template>
   <section class="dashboard" aria-labelledby="dashboard-title">
-    <h2 id="dashboard-title">0801 力学招生数据总览</h2>
+    <h2 id="dashboard-title">力学相关专业招生数据总览</h2>
 
     <div class="notice">
       <strong>数据边界：</strong>
-      当前人数来自“{{ snapshot.provider }}”公开接口快照，来源页没有标注统计年份；院校官网链接已核对为官方入口，但尚未逐校定位到当年招生目录、复试名单和拟录取名单，因此人数属于<strong>聚合参考数据</strong>，不是官网最终结论。缺失记录不会按 0 人计算。
+      26 所 985 院校的0801数据来自“{{ snapshot.provider }}”公开接口快照；国科大力学所4条0801记录与哈工大空天力学专硕记录来自2026年官网。专硕只收录官网能明确对应到力学方向的子集，不代表0855全量。
     </div>
 
     <div class="summary-grid" aria-label="数据摘要">
       <article class="summary-card">
-        <div class="summary-label">985 院校</div>
+        <div class="summary-label">招生单位</div>
         <div class="summary-value">{{ schools.length }}</div>
         <div class="summary-meta">按院校代码去重</div>
       </article>
@@ -98,14 +104,14 @@ const metricTitle = (metric: CoverageMetric) => {
     <div class="dashboard-controls" aria-label="数据筛选">
       <div class="control">
         <label for="school-search">搜索院校或代码</label>
-        <input id="school-search" v-model="query" type="search" placeholder="例如：武汉大学 / 10486" />
+        <input id="school-search" v-model="query" type="search" placeholder="例如：国科大 / 80007" />
       </div>
       <div class="control">
         <label for="major-filter">专业代码</label>
         <select id="major-filter" v-model="major">
-          <option value="all">全部 0801 专业</option>
+          <option value="all">全部力学相关专业</option>
           <option v-for="code in majorOptions" :key="code" :value="code">
-            {{ code }} {{ majorLabels[code] }}
+            {{ code }} {{ majorLabels[code] }}（{{ isProfessionalDegree(code) ? '专硕' : '学硕' }}）
           </option>
         </select>
       </div>
@@ -130,7 +136,7 @@ const metricTitle = (metric: CoverageMetric) => {
     </div>
 
     <p class="result-meta">
-      当前显示 {{ filteredSchools.length }} 所；三项数据完整 {{ completeSchoolCount }} 所。人数后的覆盖率表示已知记录数/该校总记录数。
+      当前显示 {{ filteredSchools.length }} 个招生单位；其中三项数据完整 {{ completeSchoolCount }} 个。人数后的覆盖率表示已知记录数/该校总记录数。
     </p>
 
     <div class="data-table-wrap">
@@ -138,7 +144,7 @@ const metricTitle = (metric: CoverageMetric) => {
         <thead>
           <tr>
             <th scope="col">院校</th>
-            <th scope="col">0801 招生专业</th>
+            <th scope="col">招生专业</th>
             <th scope="col">招生计划</th>
             <th scope="col">复试人数</th>
             <th scope="col">拟录取人数</th>
@@ -155,7 +161,7 @@ const metricTitle = (metric: CoverageMetric) => {
             <td>
               <div class="major-list">
                 <span v-for="code in school.majors" :key="code" class="major-chip">
-                  {{ code }} {{ majorLabels[code] }}
+                  {{ code }} {{ majorLabels[code] }} · {{ isProfessionalDegree(code) ? '专硕' : '学硕' }}
                 </span>
               </div>
             </td>
@@ -180,7 +186,9 @@ const metricTitle = (metric: CoverageMetric) => {
               <div class="source-links">
                 <a :href="withBase(`/details#school-${school.code}`)">本站详情</a>
                 <a :href="school.officialPortal" target="_blank" rel="noopener noreferrer">院校官网</a>
-                <a :href="school.aggregatorPage" target="_blank" rel="noopener noreferrer">聚合详情</a>
+                <a :href="school.aggregatorPage" target="_blank" rel="noopener noreferrer">
+                  {{ school.records.every(isOfficialSourceRecord) ? '官网招生目录' : '聚合详情' }}
+                </a>
               </div>
             </td>
           </tr>

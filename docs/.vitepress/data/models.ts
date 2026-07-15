@@ -67,6 +67,7 @@ export interface OfficialRecordData {
 
 export interface SourceAdmissionRecord {
   id: string
+  sourceKind?: 'aggregator' | 'official'
   schoolCode: string
   schoolName: string
   region: string

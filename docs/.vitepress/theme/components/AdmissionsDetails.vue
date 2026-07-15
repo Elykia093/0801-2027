@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import {
+  isOfficialSourceRecord,
+  isProfessionalDegree,
   majorLabels,
   referenceBaseline,
+  schoolSearchAliases,
   schools,
   snapshot,
   type AdmissionHistory,
@@ -33,7 +36,8 @@ const recordMatches = (record: AdmissionRecord, normalizedQuery: string) => {
     record.schoolCode,
     record.department,
     record.majorCode,
-    record.majorName
+    record.majorName,
+    ...(schoolSearchAliases[record.schoolCode] ?? [])
   ].some((value) => value.toLocaleLowerCase('zh-CN').includes(normalizedQuery))
 }
 
@@ -95,14 +99,14 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
 
 <template>
   <section class="admissions-details" aria-labelledby="details-title">
-    <h1 id="details-title">985 力学招生详情库</h1>
+    <h1 id="details-title">力学相关专业招生详情库</h1>
     <p class="details-lead">
-      逐院系展开 39 条 0801 记录，覆盖研究方向、初试科目、培养信息、复试细则、分数线和历年复录数据；已有 {{ snapshot.officialEvidenceRecords }} 条记录绑定具体官网原文，其中 {{ snapshot.officialValueRecords }} 条取得可展示的官网核验值。
+      逐院系展开 {{ snapshot.totalSourceRecords }} 条力学相关记录，覆盖0801学硕和经官网明确核验的力学相关专硕；已有 {{ snapshot.officialEvidenceRecords }} 条记录绑定具体官网原文，其中 {{ snapshot.officialValueRecords }} 条取得可展示的官网核验值。
     </p>
 
     <div class="notice">
       <strong>证据边界：</strong>
-      聚合字段来自“{{ snapshot.provider }}”公开页面快照；官网字段只在具体年度原文能对应学院和专业代码时填值。官网名单若合并多个专业、缺少专业列或附件受验证码限制，会标为<strong>部分核验</strong>，不会把合并人数硬填进0801记录。
+      985院校的0801聚合字段来自“{{ snapshot.provider }}”公开页面快照；国科大力学所和哈工大空天力学专硕字段直接来自官方目录、方案与名单。专硕只纳入官网能明确映射到力学方向的子集；合并专业且无法拆分时不会硬计入。
     </div>
 
     <details class="baseline-panel">
@@ -137,9 +141,9 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
       <div class="control">
         <label for="detail-major">专业代码</label>
         <select id="detail-major" v-model="major">
-          <option value="all">全部 0801 专业</option>
+          <option value="all">全部力学相关专业</option>
           <option v-for="code in majorOptions" :key="code" :value="code">
-            {{ code }} {{ majorLabels[code] }}
+            {{ code }} {{ majorLabels[code] }}（{{ isProfessionalDegree(code) ? '专硕' : '学硕' }}）
           </option>
         </select>
       </div>
@@ -153,7 +157,7 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
     </div>
 
     <p class="result-meta">
-      当前显示 {{ filteredSchools.length }} 所院校、{{ filteredSchools.reduce((sum, school) => sum + school.records.length, 0) }} 条院系/专业记录。
+      当前显示 {{ filteredSchools.length }} 个招生单位、{{ filteredSchools.reduce((sum, school) => sum + school.records.length, 0) }} 条院系/专业记录。
     </p>
 
     <div v-if="filteredSchools.length > 0" class="school-detail-list">
@@ -170,9 +174,9 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
               <span class="school-code">{{ school.code }}</span>
             </div>
             <div class="tag-row" aria-label="院校标签">
-              <span class="tag-chip important">985</span>
-              <span class="tag-chip">211</span>
-              <span class="tag-chip">双一流</span>
+              <span v-if="school.records.some((record) => record.is985)" class="tag-chip important">985</span>
+              <span v-if="school.records.some((record) => record.is211)" class="tag-chip">211</span>
+              <span v-if="school.records.some((record) => record.isDoubleFirstClass)" class="tag-chip">双一流</span>
               <span class="tag-chip">{{ school.region }}</span>
               <span v-for="evaluation in school.disciplineEvaluations" :key="evaluation" class="tag-chip">
                 学科评估 {{ evaluation }}
@@ -181,7 +185,9 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
           </div>
           <div class="source-actions">
             <a :href="school.officialPortal" target="_blank" rel="noopener noreferrer">院校官网</a>
-            <a :href="school.aggregatorPage" target="_blank" rel="noopener noreferrer">聚合院校页</a>
+            <a :href="school.aggregatorPage" target="_blank" rel="noopener noreferrer">
+              {{ school.records.every(isOfficialSourceRecord) ? '官网招生目录' : '聚合院校页' }}
+            </a>
           </div>
         </header>
 
@@ -217,7 +223,8 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
 
             <div class="record-body">
               <div class="record-status-line">
-                <span class="status-chip">聚合参考</span>
+                <span class="status-chip">{{ isOfficialSourceRecord(record) ? '官网来源' : '聚合参考' }}</span>
+                <span class="status-chip">{{ isProfessionalDegree(record.majorCode) ? '专业学位' : '学术学位' }}</span>
                 <span v-if="hasOfficialValues(record)" class="status-chip verified">有官网核验值</span>
                 <span v-else-if="record.officialEvidence.length > 0" class="status-chip partial">官网材料待拆分</span>
                 <span>{{ recordCompleteness(record) }}</span>
@@ -257,7 +264,7 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
                   <div><dt>招生说明</dt><dd>{{ valueOrPending(record.enrollmentNote) }}</dd></div>
                   <div><dt>招生计划</dt><dd>{{ valueOrPending(record.planned) }}</dd></div>
                   <div><dt>复试基本线</dt><dd>{{ valueOrPending(record.basicRetestLine) }}</dd></div>
-                  <div><dt>聚合复试线</dt><dd>{{ valueOrPending(record.scoreLine) }}</dd></div>
+                  <div><dt>来源复试线</dt><dd>{{ valueOrPending(record.scoreLine) }}</dd></div>
                   <div><dt>复试人数</dt><dd>{{ valueOrPending(record.retest) }}</dd></div>
                   <div><dt>拟录取人数</dt><dd>{{ valueOrPending(record.admitted) }}</dd></div>
                   <div><dt>复录比</dt><dd>{{ valueOrPending(record.retestAdmissionRatio) }}</dd></div>
@@ -276,6 +283,7 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
                         <td>{{ direction.name }}</td>
                         <td>
                           <span v-for="exam in direction.exams" :key="exam" class="exam-item">{{ exam }}</span>
+                          <span v-if="direction.exams.length === 0" class="missing-data">待官网目录核验</span>
                         </td>
                       </tr>
                     </tbody>
@@ -330,10 +338,12 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
               <section class="record-section evidence-section">
                 <h3>来源与官网核验</h3>
                 <p>
-                  聚合值与官网核验值分开展示；两者有差异时，以链接中的当年学校原文为准。没有官网核验值不代表真实人数为0。
+                  来源参考值与官网核验值分开展示；两者有差异时，以链接中的当年学校原文为准。没有官网核验值不代表真实人数为0。
                 </p>
                 <div class="source-actions inline">
-                  <a :href="record.aggregatorDetail" target="_blank" rel="noopener noreferrer">查看聚合原详情</a>
+                  <a :href="record.aggregatorDetail" target="_blank" rel="noopener noreferrer">
+                    {{ isOfficialSourceRecord(record) ? '查看官网来源原文' : '查看聚合原详情' }}
+                  </a>
                   <a :href="school.officialPortal" target="_blank" rel="noopener noreferrer">进入院校官网核验</a>
                 </div>
               </section>
