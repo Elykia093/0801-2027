@@ -760,6 +760,150 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       }
     ]
   },
+  '343729': {
+    planned: 27,
+    retest: 53,
+    admitted: 27,
+    scoreLine: 355,
+    evidence: [
+      {
+        type: 'catalog',
+        title: '哈尔滨工业大学航天学院2026年硕士研究生招生考试复试及录取工作方案（含深圳、威海校区）',
+        url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(001)航天学院 080100 力学（校本部与深圳校区）',
+        status: 'verified',
+        value: 27,
+        note: '方案PDF招生计划表明确校本部方向计划1人、深圳校区方向计划26人，统考计划合计27人。'
+      },
+      {
+        type: 'score-line',
+        title: '哈尔滨工业大学航天学院2026年硕士研究生招生考试复试及录取工作方案（含深圳、威海校区）',
+        url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(001)航天学院 080100 力学（校本部与深圳校区）',
+        status: 'verified',
+        value: 355,
+        note: '方案PDF复试资格线表将080100力学与085500机械-空天力学并列，明确总分355、单科50/45/70/70。'
+      },
+      {
+        type: 'retest',
+        title: '2026年力学学科、材料科学与工程学科、机械（空天力学）、材料与化工硕士研究生招生复试名单',
+        url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(001)航天学院 080100 力学（校本部）',
+        status: 'verified',
+        value: 6,
+        note: '复试名单PDF第1页逐行抽取并渲染核验，校本部080100力学连续列出6名统考考生。'
+      },
+      {
+        type: 'retest',
+        title: '2026年力学学科、材料科学与工程学科、机械（空天力学）、材料与化工硕士研究生招生复试名单',
+        url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(903)哈尔滨工业大学（深圳）080100 力学',
+        status: 'verified',
+        value: 47,
+        note: '复试名单PDF第7至9页逐行抽取并渲染核验，深圳校区080100力学序号从1连续至47；两校区复试合计53人。'
+      },
+      {
+        type: 'admitted',
+        title: '哈尔滨工业大学航天学院力学学科2026年硕士研究生招生拟录取公示',
+        url: 'https://sa.hit.edu.cn/2026/0401/c6582a389202/page.htm',
+        publishedAt: '2026-04-01',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(001)航天学院 080100 力学（校本部）',
+        status: 'verified',
+        value: 1,
+        note: '拟录取名单PDF第1页明确校本部080100力学拟录取1名统考考生。'
+      },
+      {
+        type: 'admitted',
+        title: '哈尔滨工业大学航天学院力学学科2026年硕士研究生招生拟录取公示',
+        url: 'https://sa.hit.edu.cn/2026/0401/c6582a389202/page.htm',
+        publishedAt: '2026-04-01',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(903)哈尔滨工业大学（深圳）080100 力学',
+        status: 'verified',
+        value: 26,
+        note: '拟录取名单PDF第4页逐行抽取并渲染核验，深圳校区080100力学序号从1连续至26；两校区拟录取合计27人。'
+      }
+    ]
+  },
+  '342154': {
+    planned: null,
+    retest: 48,
+    admitted: null,
+    scoreLine: null,
+    evidence: [
+      {
+        type: 'retest-rule',
+        title: '同济大学航空航天与力学学院2026年统考硕士复试安排',
+        url: 'https://aero-mech.tongji.edu.cn/99/d4/c22245a367060/page.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(101)航空航天与力学学院硕士研究生复试',
+        status: 'verified',
+        note: '学院官网公开完整复试安排PDF，明确力学笔试、面试时间与不予录取情形，但未列080100统考计划或专业线。'
+      },
+      {
+        type: 'retest',
+        title: '同济大学航空航天与力学学院2026年硕士研究生复试考生名单',
+        url: 'https://aero-mech.tongji.edu.cn/99/8f/c22245a366991/page.htm',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(101)航空航天与力学学院 080100 力学',
+        status: 'verified',
+        value: 48,
+        note: '复试名单PDF第1至2页逐行抽取并渲染核验，报考专业为力学的考生共48人。'
+      },
+      {
+        type: 'admitted',
+        title: '同济大学航空航天与力学学院2026年硕士研究生招生考试复试成绩公示',
+        url: 'https://aero-mech.tongji.edu.cn/9b/59/c22245a367449/page.htm',
+        publishedAt: '2026-03-27',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(101)航空航天与力学学院 080100 力学',
+        status: 'partial',
+        note: '成绩PDF逐行核验，力学实际参加复试47人，但表格没有“拟录取”标记，不能按排名或聚合页数值推算最终拟录取人数。'
+      },
+      {
+        type: 'catalog',
+        title: '同济大学研究生招生网',
+        url: 'https://yz.tongji.edu.cn/',
+        publishedAt: null,
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(101)航空航天与力学学院 080100 力学',
+        status: 'not-found',
+        note: '本轮未定位到公开且能明确区分统考与推免口径的2026专业计划原表，计划留空。'
+      },
+      {
+        type: 'score-line',
+        title: '同济大学航空航天与力学学院2026年硕士研究生复试考生名单',
+        url: 'https://aero-mech.tongji.edu.cn/99/8f/c22245a366991/page.htm',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-14',
+        year: '2026',
+        scope: '(101)航空航天与力学学院 080100 力学',
+        status: 'not-found',
+        note: '名单最低分仅是入围样本分数，学院未公开独立专业线，因此不回填。'
+      }
+    ]
+  },
   '353814': {
     planned: 3,
     retest: null,
