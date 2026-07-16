@@ -2051,6 +2051,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 21,
     admitted: 14,
     scoreLine: null,
+    retestHighestScore: 433,
+    retestLowestScore: 329,
     evidence: [
       {
         type: 'retest',
@@ -2062,7 +2064,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(005)土木工程学院 080100 力学',
         status: 'verified',
         value: 21,
-        note: '复试结果PDF逐行核验，080100力学共21名考生，备注列均为空。'
+        highestScore: 433,
+        lowestScore: 329,
+        note: '复试结果PDF逐行核验，080100力学共21名考生，初试总分329至433，备注列均为空。'
       },
       {
         type: 'admitted',
@@ -2106,6 +2110,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 8,
     admitted: null,
     scoreLine: null,
+    retestHighestScore: 422,
+    retestLowestScore: 330,
     evidence: [
       {
         type: 'catalog',
@@ -2129,7 +2135,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(240)航空航天学院 080100 力学',
         status: 'verified',
         value: 8,
-        note: '复试名单PDF逐行核验，080100含6名普通统考考生和2名专项计划考生，共8人。'
+        highestScore: 422,
+        lowestScore: 330,
+        note: '复试名单PDF逐行核验，080100初试总分330至422，含6名普通统考考生和2名专项计划考生，共8人。'
       },
       {
         type: 'score-line',
@@ -2190,6 +2198,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 3,
     admitted: 3,
     scoreLine: 290,
+    retestHighestScore: 376,
+    retestLowestScore: 293,
     evidence: [
       {
         type: 'catalog',
@@ -2225,7 +2235,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(210)土木建筑工程学院 080102 固体力学',
         status: 'verified',
         value: 3,
-        note: '结果附件逐行核验，固体力学参加复试3人。'
+        highestScore: 376,
+        lowestScore: 293,
+        note: '结果附件逐行核验，固体力学参加复试3人，初试总分293至376。'
       },
       {
         type: 'admitted',
@@ -2246,6 +2258,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 1,
     admitted: 1,
     scoreLine: 290,
+    retestHighestScore: 372,
+    retestLowestScore: 372,
     evidence: [
       {
         type: 'catalog',
@@ -2281,7 +2295,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(210)土木建筑工程学院 080104 工程力学',
         status: 'verified',
         value: 1,
-        note: '结果附件逐行核验，工程力学参加复试1人。'
+        highestScore: 372,
+        lowestScore: 372,
+        note: '结果附件逐行核验，工程力学参加复试1人，初试总分372。'
       },
       {
         type: 'admitted',
@@ -2302,6 +2318,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 1,
     admitted: 1,
     scoreLine: 320,
+    retestHighestScore: 328,
+    retestLowestScore: 328,
     evidence: [
       {
         type: 'catalog',
@@ -2337,7 +2355,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(206)水利水电学院 080103 流体力学',
         status: 'verified',
         value: 1,
-        note: '复试名单附件逐行核验，080103流体力学参加复试1人。'
+        highestScore: 328,
+        lowestScore: 328,
+        note: '复试名单附件逐行核验，080103流体力学参加复试1人，初试总分328。'
       },
       {
         type: 'admitted',
@@ -2358,6 +2378,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 13,
     admitted: 12,
     scoreLine: 326,
+    retestHighestScore: 405,
+    retestLowestScore: 322,
     evidence: [
       {
         type: 'catalog',
@@ -2393,7 +2415,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(002)机械与运载工程学院 080100 力学',
         status: 'verified',
         value: 13,
-        note: '复试名单附件逐行核验，080100共13人，其中少干计划1人。'
+        highestScore: 405,
+        lowestScore: 322,
+        note: '复试名单附件逐行核验，080100共13人，初试总分322至405；最低分考生为少干计划，普通计划最低326。'
       },
       {
         type: 'admitted',
@@ -2414,6 +2438,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 15,
     admitted: null,
     scoreLine: 305,
+    retestHighestScore: 389,
+    retestLowestScore: 309,
     evidence: [
       {
         type: 'catalog',
@@ -2449,7 +2475,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(048)土木工程学院 080100 力学',
         status: 'verified',
         value: 15,
-        note: '页面附件PDF逐行核验，序号9至23共15名力学考生。'
+        highestScore: 389,
+        lowestScore: 309,
+        note: '页面附件PDF逐行核验，序号9至23共15名力学考生，初试总分309至389。'
       },
       {
         type: 'admitted',
@@ -2469,6 +2497,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 7,
     admitted: 5,
     scoreLine: 335,
+    retestHighestScore: 370,
+    retestLowestScore: 335,
     evidence: [
       {
         type: 'catalog',
@@ -2504,7 +2534,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(760)航空航天学院 080100 力学',
         status: 'verified',
         value: 7,
-        note: '附件PDF逐行核验，080100名单含6名普通统考考生和1名立功表彰军人免初试考生，共7人。'
+        highestScore: 370,
+        lowestScore: 335,
+        note: '附件PDF逐行核验，080100名单含6名有初试成绩的普通统考考生和1名立功表彰军人免初试考生；数值样本335至370。'
       },
       {
         type: 'admitted',
@@ -2525,6 +2557,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 12,
     admitted: 8,
     scoreLine: null,
+    retestHighestScore: 368,
+    retestLowestScore: 305,
     evidence: [
       {
         type: 'catalog',
@@ -2548,7 +2582,9 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         scope: '(103)土木与交通学院 080100 力学',
         status: 'verified',
         value: 12,
-        note: '附件PDF第一页逐行核验，080100力学复试考生共12人。'
+        highestScore: 368,
+        lowestScore: 305,
+        note: '附件PDF第一页逐行核验，080100力学复试考生共12人，初试总分305至368。'
       },
       {
         type: 'admitted',

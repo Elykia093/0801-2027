@@ -114,7 +114,22 @@ for (const record of sourceRecords) {
   checkNonNegative(record, 'officialRetest', record.officialRetest)
   checkNonNegative(record, 'officialAdmitted', record.officialAdmitted)
   checkNonNegative(record, 'officialScoreLine', record.officialScoreLine)
+  checkNonNegative(record, 'officialRetestHighestScore', record.officialRetestHighestScore)
+  checkNonNegative(record, 'officialRetestLowestScore', record.officialRetestLowestScore)
   checkUrl(record.id, 'aggregatorDetail', record.aggregatorDetail)
+
+  const hasRetestHighestScore = record.officialRetestHighestScore !== null
+  const hasRetestLowestScore = record.officialRetestLowestScore !== null
+  if (hasRetestHighestScore !== hasRetestLowestScore) {
+    errors.push(`${record.id} 官网复试名单最高分和最低分必须同时存在`)
+  }
+  if (
+    record.officialRetestHighestScore !== null &&
+    record.officialRetestLowestScore !== null &&
+    record.officialRetestHighestScore < record.officialRetestLowestScore
+  ) {
+    errors.push(`${record.id} 官网复试名单最高分不能低于最低分`)
+  }
 
   for (const evidence of record.officialEvidence) {
     checkUrl(record.id, `officialEvidence.${evidence.type}`, evidence.url)
@@ -124,6 +139,27 @@ for (const record of sourceRecords) {
     }
     if (evidence.value !== undefined && evidence.value < 0) {
       errors.push(`${record.id} 官网证据值不能为负数`)
+    }
+    const hasEvidenceHighestScore = evidence.highestScore !== undefined
+    const hasEvidenceLowestScore = evidence.lowestScore !== undefined
+    if (hasEvidenceHighestScore !== hasEvidenceLowestScore) {
+      errors.push(`${record.id} 官网证据最高分和最低分必须同时存在`)
+    }
+    if (
+      (evidence.highestScore !== undefined && evidence.highestScore < 0) ||
+      (evidence.lowestScore !== undefined && evidence.lowestScore < 0)
+    ) {
+      errors.push(`${record.id} 官网证据分数不能为负数`)
+    }
+    if ((hasEvidenceHighestScore || hasEvidenceLowestScore) && evidence.type !== 'retest') {
+      errors.push(`${record.id} 官网证据分数范围只能来自复试名单`)
+    }
+    if (
+      evidence.highestScore !== undefined &&
+      evidence.lowestScore !== undefined &&
+      evidence.highestScore < evidence.lowestScore
+    ) {
+      errors.push(`${record.id} 官网证据最高分不能低于最低分`)
     }
   }
 
@@ -157,6 +193,19 @@ for (const record of sourceRecords) {
       evidenceValues.reduce((sum, evidenceValue) => sum + evidenceValue, 0) === value
     if (!matchesSingleEvidence && !matchesBatches) {
       errors.push(`${record.id} ${field}=${value} 与官网证据值 ${evidenceValues.join('、')} 不一致`)
+    }
+  }
+
+  if (record.officialRetestHighestScore !== null && record.officialRetestLowestScore !== null) {
+    const matchingRangeEvidence = record.officialEvidence.some(
+      (evidence) =>
+        evidence.type === 'retest' &&
+        evidence.status !== 'not-found' &&
+        evidence.highestScore === record.officialRetestHighestScore &&
+        evidence.lowestScore === record.officialRetestLowestScore
+    )
+    if (!matchingRangeEvidence) {
+      errors.push(`${record.id} 官网复试名单初试分范围缺少对应证据`)
     }
   }
 
@@ -202,19 +251,26 @@ for (const record of sourceRecords) {
 
 const expectedOfficialValues: Record<
   string,
-  { planned: number | null; retest: number | null; admitted: number | null; scoreLine: number | null }
+  {
+    planned: number | null
+    retest: number | null
+    admitted: number | null
+    scoreLine: number | null
+    retestHighestScore: number | null
+    retestLowestScore: number | null
+  }
 > = {
-  '342023': { planned: 18, retest: 22, admitted: null, scoreLine: 350 },
-  '340072': { planned: null, retest: 21, admitted: 14, scoreLine: null },
-  '336994': { planned: 4, retest: 8, admitted: null, scoreLine: null },
-  '331532': { planned: null, retest: null, admitted: null, scoreLine: null },
-  '327479': { planned: null, retest: 3, admitted: 3, scoreLine: 290 },
-  '327478': { planned: null, retest: 1, admitted: 1, scoreLine: 290 },
-  '327502': { planned: 2, retest: 1, admitted: 1, scoreLine: 320 },
-  '325216': { planned: 12, retest: 13, admitted: 12, scoreLine: 326 },
-  '325007': { planned: 15, retest: 15, admitted: null, scoreLine: 305 },
-  '323677': { planned: 5, retest: 7, admitted: 5, scoreLine: 335 },
-  '323019': { planned: 8, retest: 12, admitted: 8, scoreLine: null }
+  '342023': { planned: 18, retest: 22, admitted: null, scoreLine: 350, retestHighestScore: null, retestLowestScore: null },
+  '340072': { planned: null, retest: 21, admitted: 14, scoreLine: null, retestHighestScore: 433, retestLowestScore: 329 },
+  '336994': { planned: 4, retest: 8, admitted: null, scoreLine: null, retestHighestScore: 422, retestLowestScore: 330 },
+  '331532': { planned: null, retest: null, admitted: null, scoreLine: null, retestHighestScore: null, retestLowestScore: null },
+  '327479': { planned: null, retest: 3, admitted: 3, scoreLine: 290, retestHighestScore: 376, retestLowestScore: 293 },
+  '327478': { planned: null, retest: 1, admitted: 1, scoreLine: 290, retestHighestScore: 372, retestLowestScore: 372 },
+  '327502': { planned: 2, retest: 1, admitted: 1, scoreLine: 320, retestHighestScore: 328, retestLowestScore: 328 },
+  '325216': { planned: 12, retest: 13, admitted: 12, scoreLine: 326, retestHighestScore: 405, retestLowestScore: 322 },
+  '325007': { planned: 15, retest: 15, admitted: null, scoreLine: 305, retestHighestScore: 389, retestLowestScore: 309 },
+  '323677': { planned: 5, retest: 7, admitted: 5, scoreLine: 335, retestHighestScore: 370, retestLowestScore: 335 },
+  '323019': { planned: 8, retest: 12, admitted: 8, scoreLine: null, retestHighestScore: 368, retestLowestScore: 305 }
 }
 
 for (const [recordId, expected] of Object.entries(expectedOfficialValues)) {
@@ -228,7 +284,9 @@ for (const [recordId, expected] of Object.entries(expectedOfficialValues)) {
     ['官网公开招考计划', record.officialPlanned, expected.planned],
     ['官网复试人数', record.officialRetest, expected.retest],
     ['官网拟录取人数', record.officialAdmitted, expected.admitted],
-    ['官网专业复试线', record.officialScoreLine, expected.scoreLine]
+    ['官网专业复试线', record.officialScoreLine, expected.scoreLine],
+    ['官网复试名单初试最高分', record.officialRetestHighestScore, expected.retestHighestScore],
+    ['官网复试名单初试最低分', record.officialRetestLowestScore, expected.retestLowestScore]
   ] as const) {
     if (actual !== expectedValue) {
       errors.push(`${recordId} ${label} 应为 ${expectedValue ?? 'null'}，实际为 ${actual ?? 'null'}`)
@@ -270,9 +328,14 @@ const expectedSnapshotCounts = {
   historyKnownRecords: countKnown((record) => record.history.length > 0),
   officialEvidenceRecords: countKnown((record) => record.officialEvidence.length > 0),
   officialValueRecords: countKnown((record) =>
-    [record.officialPlanned, record.officialRetest, record.officialAdmitted, record.officialScoreLine].some(
-      (value) => value !== null
-    )
+    [
+      record.officialPlanned,
+      record.officialRetest,
+      record.officialAdmitted,
+      record.officialScoreLine,
+      record.officialRetestHighestScore,
+      record.officialRetestLowestScore
+    ].some((value) => value !== null)
   )
 }
 

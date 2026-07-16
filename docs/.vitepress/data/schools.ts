@@ -93,6 +93,8 @@ const admissionRecords: AdmissionRecord[] = [...generatedAdmissionRecords, ...ma
     officialRetest: official?.retest ?? null,
     officialAdmitted: official?.admitted ?? null,
     officialScoreLine: official?.scoreLine ?? null,
+    officialRetestHighestScore: official?.retestHighestScore ?? null,
+    officialRetestLowestScore: official?.retestLowestScore ?? null,
     officialEvidence: official?.evidence ?? []
   }
 })
@@ -149,9 +151,14 @@ export const snapshot = {
   historyKnownRecords: knownCount((record) => record.history.length > 0),
   officialEvidenceRecords: knownCount((record) => record.officialEvidence.length > 0),
   officialValueRecords: knownCount((record) =>
-    [record.officialPlanned, record.officialRetest, record.officialAdmitted, record.officialScoreLine].some(
-      (value) => value !== null
-    )
+    [
+      record.officialPlanned,
+      record.officialRetest,
+      record.officialAdmitted,
+      record.officialScoreLine,
+      record.officialRetestHighestScore,
+      record.officialRetestLowestScore
+    ].some((value) => value !== null)
   )
 } as const
 
@@ -167,7 +174,7 @@ export const referenceBaseline = [
   { field: '单科线、总分线、最高/最低分', reference: true, site: true, note: '按年完整展开' },
   { field: '复试、录取、复录比、一志愿、调剂', reference: true, site: true, note: '按年完整展开并保留缺失值' },
   { field: '26 所 985、国科大力学所与官网核验专硕横向筛选和汇总', reference: false, site: true, note: '支持专业、完整度和人数排序' },
-  { field: '逐条官网原文与核验值', reference: false, site: true, note: '展示官网计划、复试、拟录取、分数线及冲突说明' },
+  { field: '逐条官网原文与核验值', reference: false, site: true, note: '展示官网计划、复试、拟录取、分数线、名单初试分范围及冲突说明' },
   { field: '字段覆盖率与缺失值口径', reference: false, site: true, note: '不把 0/缺失冒充真实人数' }
 ] as const
 

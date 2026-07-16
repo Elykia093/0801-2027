@@ -78,9 +78,24 @@ const recordCompleteness = (record: AdmissionRecord) => {
 }
 
 const hasOfficialValues = (record: AdmissionRecord) =>
-  [record.officialPlanned, record.officialRetest, record.officialAdmitted, record.officialScoreLine].some(
-    (value) => value !== null
-  )
+  [
+    record.officialPlanned,
+    record.officialRetest,
+    record.officialAdmitted,
+    record.officialScoreLine,
+    record.officialRetestHighestScore,
+    record.officialRetestLowestScore
+  ].some((value) => value !== null)
+
+const evidenceSummary = (item: OfficialEvidence) =>
+  [
+    item.value !== undefined ? `${item.value}${item.type === 'score-line' ? ' 分' : ' 人'}` : null,
+    item.lowestScore !== undefined && item.highestScore !== undefined
+      ? `${item.lowestScore}-${item.highestScore} 分`
+      : null
+  ]
+    .filter((value): value is string => value !== null)
+    .join(' · ')
 
 const evidenceTypeLabels: Record<OfficialEvidence['type'], string> = {
   catalog: '招生计划',
@@ -241,13 +256,15 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
                   <div><dt>官网复试人数</dt><dd>{{ valueOrPending(record.officialRetest) }}</dd></div>
                   <div><dt>官网拟录取人数</dt><dd>{{ valueOrPending(record.officialAdmitted) }}</dd></div>
                   <div><dt>官网专业复试线</dt><dd>{{ valueOrPending(record.officialScoreLine) }}</dd></div>
+                  <div><dt>名单初试最高分</dt><dd>{{ valueOrPending(record.officialRetestHighestScore) }}</dd></div>
+                  <div><dt>名单初试最低分</dt><dd>{{ valueOrPending(record.officialRetestLowestScore) }}</dd></div>
                 </dl>
                 <div class="official-evidence-list">
                   <article v-for="item in record.officialEvidence" :key="`${item.type}-${item.url}-${item.note}`">
                     <div class="evidence-heading">
                       <span class="evidence-type">{{ evidenceTypeLabels[item.type] }}</span>
                       <span :class="['status-chip', item.status]">{{ evidenceStatusLabels[item.status] }}</span>
-                      <strong v-if="item.value !== undefined">{{ item.value }}{{ item.type === 'score-line' ? ' 分' : ' 人' }}</strong>
+                      <strong v-if="evidenceSummary(item)">{{ evidenceSummary(item) }}</strong>
                     </div>
                     <a :href="item.url" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
                     <p>{{ item.scope }} · {{ item.publishedAt ?? '发布日期未标明' }} · 访问 {{ item.accessedAt }}</p>

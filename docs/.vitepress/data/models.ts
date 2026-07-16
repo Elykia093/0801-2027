@@ -54,6 +54,8 @@ export interface OfficialEvidence {
   scope: string
   status: OfficialEvidenceStatus
   value?: number
+  highestScore?: number
+  lowestScore?: number
   note?: string
 }
 
@@ -62,6 +64,8 @@ export interface OfficialRecordData {
   retest: number | null
   admitted: number | null
   scoreLine: number | null
+  retestHighestScore?: number | null
+  retestLowestScore?: number | null
   evidence: OfficialEvidence[]
 }
 
@@ -99,6 +103,8 @@ export interface AdmissionRecord extends SourceAdmissionRecord {
   officialRetest: number | null
   officialAdmitted: number | null
   officialScoreLine: number | null
+  officialRetestHighestScore: number | null
+  officialRetestLowestScore: number | null
   officialEvidence: OfficialEvidence[]
 }
 
