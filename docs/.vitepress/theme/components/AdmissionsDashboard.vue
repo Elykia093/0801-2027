@@ -154,35 +154,35 @@ const metricTitle = (metric: CoverageMetric) => {
         </thead>
         <tbody v-if="filteredSchools.length > 0">
           <tr v-for="school in filteredSchools" :key="school.code">
-            <td>
+            <td data-label="院校">
               <div class="school-name">{{ school.name }}</div>
               <div class="school-code">{{ school.code }} · {{ school.region }} · {{ school.recordCount }} 条记录</div>
             </td>
-            <td>
+            <td data-label="招生专业">
               <div class="major-list">
                 <span v-for="code in school.majors" :key="code" class="major-chip">
                   {{ code }} {{ majorLabels[code] }} · {{ isProfessionalDegree(code) ? '专硕' : '学硕' }}
                 </span>
               </div>
             </td>
-            <td :title="metricTitle(school.planned)">
+            <td data-label="招生计划" :title="metricTitle(school.planned)">
               <div class="metric-value">{{ school.planned.value ?? '—' }}</div>
               <div class="metric-coverage">{{ school.planned.known }}/{{ school.planned.total }}</div>
             </td>
-            <td :title="metricTitle(school.retest)">
+            <td data-label="复试人数" :title="metricTitle(school.retest)">
               <div class="metric-value">{{ school.retest.value ?? '—' }}</div>
               <div class="metric-coverage">{{ school.retest.known }}/{{ school.retest.total }}</div>
             </td>
-            <td :title="metricTitle(school.admitted)">
+            <td data-label="拟录取人数" :title="metricTitle(school.admitted)">
               <div class="metric-value">{{ school.admitted.value ?? '—' }}</div>
               <div class="metric-coverage">{{ school.admitted.known }}/{{ school.admitted.total }}</div>
             </td>
-            <td>
+            <td data-label="完整度">
               <span :class="['status-chip', { partial: !hasCompleteMetrics(school) }]">
                 {{ hasCompleteMetrics(school) ? '三项完整' : '部分数据' }}
               </span>
             </td>
-            <td>
+            <td data-label="来源">
               <div class="source-links">
                 <a :href="withBase(`/details#school-${school.code}`)">本站详情</a>
                 <a :href="school.officialPortal" target="_blank" rel="noopener noreferrer">院校官网</a>

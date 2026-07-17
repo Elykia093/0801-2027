@@ -197,15 +197,21 @@ for (const record of sourceRecords) {
   }
 
   if (record.officialRetestHighestScore !== null && record.officialRetestLowestScore !== null) {
-    const matchingRangeEvidence = record.officialEvidence.some(
+    const rangeEvidence = record.officialEvidence.filter(
       (evidence) =>
         evidence.type === 'retest' &&
         evidence.status !== 'not-found' &&
-        evidence.highestScore === record.officialRetestHighestScore &&
-        evidence.lowestScore === record.officialRetestLowestScore
+        evidence.highestScore !== undefined &&
+        evidence.lowestScore !== undefined
     )
-    if (!matchingRangeEvidence) {
-      errors.push(`${record.id} 官网复试名单初试分范围缺少对应证据`)
+    const evidenceHighestScore = Math.max(...rangeEvidence.map((evidence) => evidence.highestScore!))
+    const evidenceLowestScore = Math.min(...rangeEvidence.map((evidence) => evidence.lowestScore!))
+    if (
+      rangeEvidence.length === 0 ||
+      evidenceHighestScore !== record.officialRetestHighestScore ||
+      evidenceLowestScore !== record.officialRetestLowestScore
+    ) {
+      errors.push(`${record.id} 官网复试名单初试分范围与分批证据不一致`)
     }
   }
 
@@ -261,16 +267,26 @@ const expectedOfficialValues: Record<
   }
 > = {
   '342023': { planned: 18, retest: 22, admitted: null, scoreLine: 350, retestHighestScore: null, retestLowestScore: null },
+  '342154': { planned: null, retest: 48, admitted: null, scoreLine: null, retestHighestScore: 435, retestLowestScore: 344 },
+  '343729': { planned: 27, retest: 53, admitted: 27, scoreLine: 355, retestHighestScore: 446, retestLowestScore: 355 },
+  '347202': { planned: null, retest: 12, admitted: 10, scoreLine: null, retestHighestScore: 394, retestLowestScore: 343 },
+  '347183': { planned: null, retest: 1, admitted: 1, scoreLine: null, retestHighestScore: 375, retestLowestScore: 375 },
   '340072': { planned: null, retest: 21, admitted: 14, scoreLine: null, retestHighestScore: 433, retestLowestScore: 329 },
   '336994': { planned: 4, retest: 8, admitted: null, scoreLine: null, retestHighestScore: 422, retestLowestScore: 330 },
   '331532': { planned: null, retest: null, admitted: null, scoreLine: null, retestHighestScore: null, retestLowestScore: null },
   '327479': { planned: null, retest: 3, admitted: 3, scoreLine: 290, retestHighestScore: 376, retestLowestScore: 293 },
   '327478': { planned: null, retest: 1, admitted: 1, scoreLine: 290, retestHighestScore: 372, retestLowestScore: 372 },
   '327502': { planned: 2, retest: 1, admitted: 1, scoreLine: 320, retestHighestScore: 328, retestLowestScore: 328 },
+  '327349': { planned: 13, retest: 20, admitted: 13, scoreLine: null, retestHighestScore: 427, retestLowestScore: 356 },
   '325216': { planned: 12, retest: 13, admitted: 12, scoreLine: 326, retestHighestScore: 405, retestLowestScore: 322 },
   '325007': { planned: 15, retest: 15, admitted: null, scoreLine: 305, retestHighestScore: 389, retestLowestScore: 309 },
   '323677': { planned: 5, retest: 7, admitted: 5, scoreLine: 335, retestHighestScore: 370, retestLowestScore: 335 },
-  '323019': { planned: 8, retest: 12, admitted: 8, scoreLine: null, retestHighestScore: 368, retestLowestScore: 305 }
+  '323019': { planned: 8, retest: 12, admitted: 8, scoreLine: null, retestHighestScore: 368, retestLowestScore: 305 },
+  '323686': { planned: 2, retest: 1, admitted: 2, scoreLine: 280, retestHighestScore: 338, retestLowestScore: 338 },
+  '313757': { planned: null, retest: 111, admitted: 49, scoreLine: null, retestHighestScore: 403, retestLowestScore: 287 },
+  '304162': { planned: null, retest: 1, admitted: null, scoreLine: null, retestHighestScore: 370, retestLowestScore: 370 },
+  '304125': { planned: null, retest: 12, admitted: null, scoreLine: null, retestHighestScore: 395, retestLowestScore: 331 },
+  'hit-aero-085500-airspace-mechanics': { planned: 47, retest: 49, admitted: 47, scoreLine: 355, retestHighestScore: 427, retestLowestScore: 356 }
 }
 
 for (const [recordId, expected] of Object.entries(expectedOfficialValues)) {

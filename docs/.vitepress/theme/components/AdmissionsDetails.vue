@@ -16,6 +16,7 @@ import {
 const query = ref('')
 const major = ref('all')
 const region = ref('all')
+const officialStatus = ref('all')
 
 const majorOptions = computed(() =>
   [...new Set(schools.flatMap((school) => school.majors))].sort()
@@ -29,7 +30,16 @@ const regionOptions = computed(() =>
 
 const recordMatches = (record: AdmissionRecord, normalizedQuery: string) => {
   const matchesMajor = major.value === 'all' || record.majorCode === major.value
-  if (!matchesMajor) return false
+  const matchesOfficialStatus =
+    officialStatus.value === 'all' ||
+    (officialStatus.value === 'with-values' && hasOfficialValues(record)) ||
+    (officialStatus.value === 'with-range' &&
+      record.officialRetestHighestScore !== null &&
+      record.officialRetestLowestScore !== null) ||
+    (officialStatus.value === 'pending-split' &&
+      record.officialEvidence.length > 0 &&
+      !hasOfficialValues(record))
+  if (!matchesMajor || !matchesOfficialStatus) return false
   if (!normalizedQuery) return true
   return [
     record.schoolName,
@@ -116,7 +126,7 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
   <section class="admissions-details" aria-labelledby="details-title">
     <h1 id="details-title">力学相关专业招生详情库</h1>
     <p class="details-lead">
-      逐院系展开 {{ snapshot.totalSourceRecords }} 条力学相关记录，覆盖0801学硕和经官网明确核验的力学相关专硕；已有 {{ snapshot.officialEvidenceRecords }} 条记录绑定具体官网原文，其中 {{ snapshot.officialValueRecords }} 条取得可展示的官网核验值。
+      逐院系展开 {{ snapshot.totalSourceRecords }} 条力学相关记录，覆盖0801学硕和经官网明确核验的力学相关专硕；已有 {{ snapshot.officialEvidenceRecords }} 条记录绑定具体官网原文，其中 {{ snapshot.officialValueRecords }} 条取得可展示的官网核验值，{{ snapshot.officialRangeRecordCount }} 条含复试名单初试分范围。
     </p>
 
     <div class="notice">
@@ -167,6 +177,15 @@ const evidenceStatusLabels: Record<OfficialEvidence['status'], string> = {
         <select id="detail-region" v-model="region">
           <option value="all">全部地区</option>
           <option v-for="item in regionOptions" :key="item" :value="item">{{ item }}</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="detail-official-status">官网核验状态</label>
+        <select id="detail-official-status" v-model="officialStatus">
+          <option value="all">全部</option>
+          <option value="with-values">有官网核验值</option>
+          <option value="with-range">有初试分范围</option>
+          <option value="pending-split">官网材料待拆分</option>
         </select>
       </div>
     </div>

@@ -150,6 +150,10 @@ export const snapshot = {
   retestDetailKnownRecords: knownCount((record) => record.retestDetails.length > 0),
   historyKnownRecords: knownCount((record) => record.history.length > 0),
   officialEvidenceRecords: knownCount((record) => record.officialEvidence.length > 0),
+  officialRangeRecordCount: knownCount(
+    (record) =>
+      record.officialRetestHighestScore !== null && record.officialRetestLowestScore !== null
+  ),
   officialValueRecords: knownCount((record) =>
     [
       record.officialPlanned,

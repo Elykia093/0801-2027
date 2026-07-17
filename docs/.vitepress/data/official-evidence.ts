@@ -83,6 +83,8 @@ const hitAirspaceMechanicsEvidence: OfficialRecordData = {
   retest: 49,
   admitted: 47,
   scoreLine: 355,
+  retestHighestScore: 427,
+  retestLowestScore: 356,
   evidence: [
     {
       type: 'catalog',
@@ -124,12 +126,14 @@ const hitAirspaceMechanicsEvidence: OfficialRecordData = {
       title: '哈尔滨工业大学航天学院2026年硕士研究生招生考试复试名单',
       url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
       publishedAt: '2026-03-21',
-      accessedAt: '2026-07-16',
+      accessedAt: '2026-07-17',
       year: '2026',
       scope: '(001)航天学院 085500机械 11、42、61空天力学方向',
       status: 'verified',
       value: 49,
-      note: '名单逐行统计：方向11为21人、方向42为13人、方向61为15人，合计49人。'
+      highestScore: 427,
+      lowestScore: 356,
+      note: '名单逐行统计：方向11为21人、方向42为13人、方向61为15人，合计49人；初试总分356至427。'
     },
     {
       type: 'admitted',
@@ -783,6 +787,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 12,
     admitted: 10,
     scoreLine: null,
+    retestHighestScore: 394,
+    retestLowestScore: 343,
     evidence: [
       {
         type: 'retest-rule',
@@ -800,12 +806,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '东北大学理学院2026年硕士研究生招生考试复试成绩公布',
         url: 'https://cos.neu.edu.cn/2026/0331/c11039a451773/page.htm',
         publishedAt: '2026-03-31',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(002)理学院 080100 力学',
         status: 'verified',
         value: 12,
-        note: '复试成绩PDF第11页逐行抽取并渲染核验，080100力学共12名复试考生。'
+        highestScore: 394,
+        lowestScore: 343,
+        note: '复试成绩PDF第11页逐行抽取并渲染核验，080100力学共12名复试考生，初试总分343至394。'
       },
       {
         type: 'admitted',
@@ -848,18 +856,22 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 1,
     admitted: 1,
     scoreLine: null,
+    retestHighestScore: 375,
+    retestLowestScore: 375,
     evidence: [
       {
         type: 'retest',
         title: '资源与土木工程学院2026年硕士研究生招生考试复试成绩公布',
         url: 'http://www.zitu.neu.edu.cn/2026/0331/c1036a451775/page.htm',
         publishedAt: '2026-03-31',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(006)资源与土木工程学院 080104 工程力学',
         status: 'verified',
         value: 1,
-        note: '复试成绩PDF第1页逐行抽取并渲染核验，080104工程力学仅1名复试考生。'
+        highestScore: 375,
+        lowestScore: 375,
+        note: '复试成绩PDF第1页逐行抽取并渲染核验，080104工程力学仅1名复试考生，初试总分375。'
       },
       {
         type: 'admitted',
@@ -914,6 +926,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 53,
     admitted: 27,
     scoreLine: 355,
+    retestHighestScore: 446,
+    retestLowestScore: 355,
     evidence: [
       {
         type: 'catalog',
@@ -944,24 +958,28 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '2026年力学学科、材料科学与工程学科、机械（空天力学）、材料与化工硕士研究生招生复试名单',
         url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
         publishedAt: '2026-03-21',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(001)航天学院 080100 力学（校本部）',
         status: 'verified',
         value: 6,
-        note: '复试名单PDF第1页逐行抽取并渲染核验，校本部080100力学连续列出6名统考考生。'
+        highestScore: 393,
+        lowestScore: 356,
+        note: '复试名单PDF第1页逐行抽取并渲染核验，校本部080100力学连续列出6名统考考生，初试总分356至393。'
       },
       {
         type: 'retest',
         title: '2026年力学学科、材料科学与工程学科、机械（空天力学）、材料与化工硕士研究生招生复试名单',
         url: 'https://sa.hit.edu.cn/2026/0322/c6582a388650/page.htm',
         publishedAt: '2026-03-21',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(903)哈尔滨工业大学（深圳）080100 力学',
         status: 'verified',
         value: 47,
-        note: '复试名单PDF第7至9页逐行抽取并渲染核验，深圳校区080100力学序号从1连续至47；两校区复试合计53人。'
+        highestScore: 446,
+        lowestScore: 355,
+        note: '复试名单PDF第7至9页逐行抽取并渲染核验，深圳校区080100力学序号从1连续至47，初试总分355至446；两校区复试合计53人。'
       },
       {
         type: 'admitted',
@@ -994,6 +1012,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 48,
     admitted: null,
     scoreLine: null,
+    retestHighestScore: 435,
+    retestLowestScore: 344,
     evidence: [
       {
         type: 'retest-rule',
@@ -1011,12 +1031,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '同济大学航空航天与力学学院2026年硕士研究生复试考生名单',
         url: 'https://aero-mech.tongji.edu.cn/99/8f/c22245a366991/page.htm',
         publishedAt: '2026-03-19',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(101)航空航天与力学学院 080100 力学',
         status: 'verified',
         value: 48,
-        note: '复试名单PDF第1至2页逐行抽取并渲染核验，报考专业为力学的考生共48人。'
+        highestScore: 435,
+        lowestScore: 344,
+        note: '复试名单PDF第1至2页逐行抽取并渲染核验，报考专业为力学的考生共48人，初试总分344至435。'
       },
       {
         type: 'admitted',
@@ -1123,6 +1145,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 1,
     admitted: null,
     scoreLine: null,
+    retestHighestScore: 370,
+    retestLowestScore: 370,
     evidence: [
       {
         type: 'catalog',
@@ -1141,12 +1165,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '国防科技大学理学院2026年硕士研究生复试名单',
         url: 'https://yjszs.nudt.edu.cn/attached/file/20260323/20260323161552_965.pdf',
         publishedAt: '2026-03-23',
-        accessedAt: '2026-07-12',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(001)理学院 0801 力学（项目映射到080100记录）',
         status: 'verified',
         value: 1,
-        note: '官网名单逐行仅1名报考专业为“力学”；原文未写080100，按学院0801招生目录映射。'
+        highestScore: 370,
+        lowestScore: 370,
+        note: '官网名单逐行仅1名报考专业为“力学”，初试总分370；原文未写080100，按学院0801招生目录映射。'
       }
     ]
   },
@@ -1155,6 +1181,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 12,
     admitted: null,
     scoreLine: null,
+    retestHighestScore: 395,
+    retestLowestScore: 331,
     evidence: [
       {
         type: 'catalog',
@@ -1173,12 +1201,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '国防科技大学空天科学学院2026年硕士研究生复试名单',
         url: 'https://yjszs.nudt.edu.cn/attached/file/20260321/20260321172822_609.pdf',
         publishedAt: '2026-03-21',
-        accessedAt: '2026-07-12',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(007)空天科学学院 0801 力学（项目映射到080100记录）',
         status: 'verified',
         value: 12,
-        note: '官网名单逐行前12名报考专业均为“力学”；原文未写080100，按学院0801招生目录映射。'
+        highestScore: 395,
+        lowestScore: 331,
+        note: '官网名单逐行前12名报考专业均为“力学”，初试总分331至395；原文未写080100，按学院0801招生目录映射。'
       }
     ]
   },
@@ -1686,6 +1716,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 111,
     admitted: 49,
     scoreLine: null,
+    retestHighestScore: 403,
+    retestLowestScore: 287,
     evidence: [
       {
         type: 'catalog',
@@ -1715,24 +1747,28 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '土木工程与力学学院2026年硕士研究生招生第一志愿上线考生名单',
         url: 'https://gxy.lzu.edu.cn/gongxueyuan/upload/files/20260320/d8050b04898549599ab8887a23d1cac9.pdf',
         publishedAt: '2026-03-21',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(081)土木工程与力学学院 080100 力学（一志愿）',
         status: 'verified',
         value: 5,
-        note: 'PDF逐行核验，080100一志愿上线考生共5人。'
+        highestScore: 312,
+        lowestScore: 287,
+        note: 'PDF逐行核验，080100一志愿上线考生共5人，初试总分287至312。'
       },
       {
         type: 'retest',
         title: '土木工程与力学学院2026年硕士研究生招生调剂考生复试名单（第一批）',
         url: 'https://gxy.lzu.edu.cn/gongxueyuan/upload/files/20260408/a452a9902b9f439789a90cea321970a5.pdf',
         publishedAt: '2026-04-08',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(081)土木工程与力学学院 080100 力学（调剂第一批）',
         status: 'verified',
         value: 106,
-        note: 'PDF逐行核验，序号1至106均为080100力学调剂复试考生。'
+        highestScore: 403,
+        lowestScore: 294,
+        note: 'PDF逐行核验，序号1至106均为080100力学调剂复试考生，初试总分294至403。'
       },
       {
         type: 'retest',
@@ -1895,6 +1931,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 20,
     admitted: 13,
     scoreLine: null,
+    retestHighestScore: 427,
+    retestLowestScore: 356,
     evidence: [
       {
         type: 'catalog',
@@ -1913,12 +1951,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '华中科技大学航空航天学院2026年硕士研究生复试工作细则及复试名单公示',
         url: 'http://ae.hust.edu.cn/info/1194/4028.htm',
         publishedAt: '2026-03-17',
-        accessedAt,
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(123)航空航天学院 080100 力学',
         status: 'verified',
         value: 20,
-        note: '页面招生计划表直接列出080100上线人数20。'
+        highestScore: 427,
+        lowestScore: 356,
+        note: '官网附件逐行核验，080100力学复试考生共20人，初试总分356至427。'
       },
       {
         type: 'admitted',
@@ -1939,6 +1979,8 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     retest: 1,
     admitted: 2,
     scoreLine: 280,
+    retestHighestScore: 338,
+    retestLowestScore: 338,
     evidence: [
       {
         type: 'catalog',
@@ -1969,12 +2011,14 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '先进制造学院2026年硕士生复试名单',
         url: 'https://am.sysu.edu.cn/sites/default/files/2026-05/%E5%85%88%E8%BF%9B%E5%88%B6%E9%80%A0%E5%AD%A6%E9%99%A22026%E5%B9%B4%E7%A1%95%E5%A3%AB%E7%A0%94%E7%A9%B6%E7%94%9F%E5%A4%8D%E8%AF%95%E5%90%8D%E5%8D%95.pdf',
         publishedAt: '2026-03-18',
-        accessedAt,
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(755)先进制造学院 080100 力学（一志愿）',
         status: 'verified',
         value: 1,
-        note: 'PDF逐行核验，080100一志愿复试名单仅周航1人。'
+        highestScore: 338,
+        lowestScore: 338,
+        note: 'PDF逐行核验，080100一志愿复试名单仅周航1人，初试总分338。'
       },
       {
         type: 'admitted',
