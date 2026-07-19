@@ -88,6 +88,17 @@ const hitAirspaceMechanicsEvidence: OfficialRecordData = {
   evidence: [
     {
       type: 'catalog',
+      title: '2026年统考硕士研究生招生目录',
+      url: 'https://yzb.hit.edu.cn/2025/0925/c22281a392831/page.htm',
+      publishedAt: '2025-09-25',
+      accessedAt: '2026-07-18',
+      year: '2026',
+      scope: '(001)航天学院 085500机械 11、42、61空天力学方向',
+      status: 'verified',
+      note: '内嵌招生目录PDF第2页逐方向列明三者科目相同：101思想政治理论、201英语（一）或202俄语或203日语、301数学（一）、815基础力学；815含理论力学和材料力学，各占50%。'
+    },
+    {
+      type: 'catalog',
       title: '哈尔滨工业大学航天学院2026年硕士研究生复试及录取工作方案',
       url: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
       publishedAt: '2026-03-21',
@@ -512,7 +523,7 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     ]
   },
   '351357': {
-    planned: null,
+    planned: 20,
     retest: null,
     admitted: null,
     scoreLine: null,
@@ -522,11 +533,11 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         title: '机械工程学院2026年硕士研究生招生复试录取工作办法（含非全日制）',
         url: 'https://me.tju.edu.cn/info/2670/49091.htm',
         publishedAt: '2026-03-22',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-18',
         year: '2026',
         scope: '(201)机械工程学院硕士研究生复试录取',
-        status: 'partial',
-        note: '学院官网保留复试录取工作办法通知页，但现存页面已不含原附件，无法复核080100的具体计划或专业线。'
+        status: 'verified',
+        note: '官网正文内嵌PDF可读，明确080100因初试报名未分方向，复试按方向选择并分方向录取；方案未另列080100专业复试线。'
       },
       {
         type: 'retest',
@@ -563,14 +574,26 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
       },
       {
         type: 'catalog',
-        title: '天津大学研究生招生网',
-        url: 'https://yzb.tju.edu.cn/',
-        publishedAt: null,
-        accessedAt: '2026-07-14',
+        title: '机械工程学院2026年硕士研究生招生复试录取工作办法（含非全日制）',
+        url: 'https://me.tju.edu.cn/info/2670/49091.htm',
+        publishedAt: '2026-03-22',
+        accessedAt: '2026-07-18',
+        year: '2026',
+        scope: '(201)机械工程学院 080100 力学（普通统考，不含专项计划）',
+        status: 'verified',
+        value: 20,
+        note: '官网内嵌方案PDF第1页列明080100力学01方向19人、02方向1人，普通统考计划合计20人；第2页另列退役大学生士兵专项1人，本口径不并入。'
+      },
+      {
+        type: 'score-line',
+        title: '机械工程学院2026年硕士研究生招生复试录取工作办法（含非全日制）',
+        url: 'https://me.tju.edu.cn/info/2670/49091.htm',
+        publishedAt: '2026-03-22',
+        accessedAt: '2026-07-18',
         year: '2026',
         scope: '(201)机械工程学院 080100 力学',
         status: 'not-found',
-        note: '本轮未定位到当前仍公开且能区分统考、推免口径的2026专业目录原表，因此招生计划留空。'
+        note: '方案仅引用天津大学相关学科专业复试基本线，未另列080100专业复试总分线；不以名单最低分或校级基本线替代。'
       }
     ]
   },
@@ -642,80 +665,122 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     ]
   },
   '347381': {
-    planned: null,
+    planned: 22,
     retest: 40,
     admitted: 22,
-    scoreLine: null,
+    scoreLine: 335,
+    retestHighestScore: 412,
+    retestLowestScore: 230,
+    historyValues: {
+      politicsAverage: 66,
+      foreignLanguageAverage: 66,
+      subjectOneAverage: 108,
+      subjectTwoAverage: 110,
+      averageScore: 351,
+      admittedHighestScore: 412,
+      admittedLowestScore: 243,
+      firstChoiceAdmitted: 17,
+      transferAdmitted: 5
+    },
     evidence: [
       {
-        type: 'retest-rule',
+        type: 'catalog',
         title: '力学与航空航天学院2026年硕士研究生复试录取办法',
         url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
         publishedAt: '2026-03-20',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
-        scope: '(560)力学与航空航天学院硕士研究生复试录取',
-        status: 'partial',
-        note: '学院官网保留复试录取办法通知和名单附件，但现存页面未提供可复核的080100计划及专业线表格。'
+        scope: '(560)力学与航空航天学院 080100 力学（普通统考与南疆高校教师专项合计）',
+        status: 'verified',
+        value: 22,
+        note: '官网内嵌复试录取办法PDF第2页列明普通统考计划17人、少数民族骨干计划南疆高校教师专项5人，合计22人。'
+      },
+      {
+        type: 'score-line',
+        title: '力学与航空航天学院2026年硕士研究生复试录取办法',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-17',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（普通统考）',
+        status: 'verified',
+        value: 335,
+        note: '官网内嵌复试录取办法PDF第1页列明普通统考总分线335分，政治45、外语45、业务课一70、业务课二75分。'
+      },
+      {
+        type: 'score-line',
+        title: '力学与航空航天学院2026年硕士研究生复试录取办法',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
+        publishedAt: '2026-03-20',
+        accessedAt: '2026-07-17',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项）',
+        status: 'verified',
+        value: 201,
+        note: '官网内嵌复试录取办法PDF第1页列明南疆高校教师专项总分不低于201分，单科不作要求。'
       },
       {
         type: 'retest',
         title: '力学与航空航天学院2026年硕士研究生复试名单',
         url: 'https://lihang.dlut.edu.cn/info/1050/28372.htm',
         publishedAt: '2026-03-20',
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(560)力学与航空航天学院 080100 力学（一志愿）',
         status: 'verified',
         value: 24,
-        note: '附件PDF第1页逐行抽取，080100力学一志愿复试名单共24人。'
+        highestScore: 412,
+        lowestScore: 335,
+        note: '附件PDF第1页逐行抽取，080100力学一志愿复试名单共24人，初试总分335至412分。'
       },
       {
         type: 'admitted',
         title: '力学与航空航天学院2026年硕士研究生复试成绩及录取结果',
         url: 'https://lihang.dlut.edu.cn/info/1050/28582.htm',
-        publishedAt: '2026-03-30',
-        accessedAt: '2026-07-14',
+        publishedAt: '2026-03-28',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(560)力学与航空航天学院 080100 力学（一志愿）',
         status: 'verified',
         value: 17,
-        note: '附件PDF第1页列出24名080100考生，其中17人的录取结果为“拟录取”。'
+        note: '附件PDF第1页列出24名080100考生，其中17人的录取结果为“拟录取”；与复试名单按考生编号对应后，纳入全年22名拟录取考生的初试统计。'
       },
       {
         type: 'retest',
         title: '力学与航空航天学院2026年硕士研究生调剂复试名单',
         url: 'https://lihang.dlut.edu.cn/info/1050/28852.htm',
-        publishedAt: '2026-04-09',
-        accessedAt: '2026-07-14',
+        publishedAt: '2026-04-08',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项调剂）',
         status: 'verified',
         value: 16,
-        note: '调剂复试名单PDF列出16名080100力学考生，均为少数民族高层次骨干人才计划南疆高校教师专项。'
+        highestScore: 328,
+        lowestScore: 230,
+        note: '调剂复试名单PDF列出16名080100力学考生，初试总分230至328分，均为少数民族高层次骨干人才计划南疆高校教师专项；后续成绩表显示其中6人缺考。'
+      },
+      {
+        type: 'retest-rule',
+        title: '力学与航空航天学院2026年全国硕士研究生调剂复试成绩',
+        url: 'https://lihang.dlut.edu.cn/info/1050/28902.htm',
+        publishedAt: '2026-04-09',
+        accessedAt: '2026-07-17',
+        year: '2026',
+        scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项调剂）',
+        status: 'verified',
+        note: '调剂复试成绩PDF列出16名080100力学考生，其中10人有复试成绩、6人各项复试成绩均标注“缺考”；本条仅说明到考口径，不计入复试名单人数。'
       },
       {
         type: 'admitted',
         title: '力学与航空航天学院2026年全国硕士研究生调剂复试拟录取名单',
         url: 'https://lihang.dlut.edu.cn/info/1050/28932.htm',
-        publishedAt: '2026-04-13',
-        accessedAt: '2026-07-14',
+        publishedAt: '2026-04-09',
+        accessedAt: '2026-07-17',
         year: '2026',
         scope: '(560)力学与航空航天学院 080100 力学（南疆高校教师专项调剂）',
         status: 'verified',
         value: 5,
-        note: '调剂拟录取PDF列出5名080100拟录取考生；与一志愿17人合计最终22人。'
-      },
-      {
-        type: 'catalog',
-        title: '大连理工大学2026年硕士研究生招生专业目录',
-        url: 'https://gs.dlut.edu.cn/',
-        publishedAt: null,
-        accessedAt: '2026-07-14',
-        year: '2026',
-        scope: '(560)力学与航空航天学院 080100 力学',
-        status: 'not-found',
-        note: '本轮未定位到可公开复核且明确区分统考、专项和推免口径的计划原表，因此招生计划留空。'
+        note: '调剂拟录取PDF列出5名080100拟录取考生；与一志愿17人合计22人。两批拟录取考生按编号与复试名单对应后，政治、外语、业务课一、业务课二和初试总分平均值四舍五入为66、66、108、110、351分，初试总分范围243至412分。调剂名单16人中6人缺考，因此不派生复录比。'
       }
     ]
   },
@@ -727,58 +792,58 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     evidence: [
       {
         type: 'catalog',
-        title: '大连理工大学盘锦校区学院设置',
-        url: 'https://www.dlut.edu.cn/xbxy/pjxq.htm',
+        title: '大连理工大学2026年硕士研究生招生专业目录：080104工程力学',
+        url: 'https://yjszs.dlut.edu.cn/zsbm/zsml/sszsml/zsmlYjfx/2026/380/080104?ksfs=21',
         publishedAt: null,
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-19',
         year: '2026',
-        scope: '(380)盘锦校区化工海洋与生命学院',
-        status: 'partial',
-        note: '学校官网学院设置页确认化工海洋与生命学院官方站点为hyxy.dlut.edu.cn，仅用于确认院系与官网归属。'
+        scope: '(380)盘锦校区化工海洋与生命学院 080104 工程力学',
+        status: 'verified',
+        note: '大连理工大学研招目录动态页列出080104工程力学6个全日制研究方向，初试科目统一为101思想政治理论、201英语（一）、301数学（一）、816材料力学；页面列出816初试书目及复试参考范围，但人数栏在页面端不公开。'
       },
       {
         type: 'retest-rule',
-        title: '化工海洋与生命学院研究生招生栏目',
-        url: 'http://hyxy.dlut.edu.cn/zsjy/yjszs.htm',
+        title: '化工海洋与生命学院研究生招生栏目及站内全文检索',
+        url: 'https://hyxy.dlut.edu.cn/tzgg/jwtz.htm',
         publishedAt: null,
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-19',
         year: '2026',
         scope: '(380)化工海洋与生命学院 080104 工程力学',
         status: 'not-found',
-        note: '学院研究生招生栏目当前最新公开的硕士复试录取材料停留在2024年，未找到2026年复试办法或专业线。'
+        note: '学院2026站内全文检索仅返回学位论文答辩通知和2026招生专业调整说明，未找到080104对应的2026复试录取办法或专业复试线；旧研究生招生栏目仍停留在2024年。'
       },
       {
         type: 'retest',
-        title: '化工海洋与生命学院研究生招生栏目',
-        url: 'http://hyxy.dlut.edu.cn/wzlist.jsp?urltype=tree.TreeTempUrl&wbtreeid=1591',
+        title: '化工海洋与生命学院研究生招生栏目及站内全文检索',
+        url: 'https://hyxy.dlut.edu.cn/tzgg/jwtz.htm',
         publishedAt: null,
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-19',
         year: '2026',
         scope: '(380)化工海洋与生命学院 080104 工程力学',
         status: 'not-found',
-        note: '栏目列表未公开2026年硕士复试名单，无法按080104安全计数。'
+        note: '官网学院栏目和站内全文检索均未公开2026年080104复试名单；学校2026全日制统考汇总只到学院和学位类型，不能拆分到工程力学。'
       },
       {
         type: 'admitted',
-        title: '化工海洋与生命学院研究生招生栏目',
-        url: 'http://hyxy.dlut.edu.cn/wzlist.jsp?urltype=tree.TreeTempUrl&wbtreeid=1591',
-        publishedAt: null,
-        accessedAt: '2026-07-14',
+        title: '大连理工大学2026年全日制硕士研究生各院系统考报名、录取情况',
+        url: 'https://gs.dlut.edu.cn/info/1176/50402.htm',
+        publishedAt: '2026-04-29',
+        accessedAt: '2026-07-19',
         year: '2026',
-        scope: '(380)化工海洋与生命学院 080104 工程力学',
-        status: 'not-found',
-        note: '栏目列表未公开2026年复试结果或拟录取名单，无法核验拟录取人数和后续调剂批次。'
+        scope: '(380)盘锦校区化工海洋与生命学院 学术学位合计（不等同080104）',
+        status: 'partial',
+        note: '学校汇总表按院系和学位类型列出该学院学术学位统考报考39人、录取31人，但未列专业代码，不能将31人写入080104工程力学。'
       },
       {
         type: 'catalog',
-        title: '大连理工大学研究生院',
-        url: 'https://gs.dlut.edu.cn/',
+        title: '大连理工大学2026年硕士研究生招生章程',
+        url: 'https://gs.dlut.edu.cn/yjszs/sss/zs1/zs.htm',
         publishedAt: null,
-        accessedAt: '2026-07-14',
+        accessedAt: '2026-07-19',
         year: '2026',
         scope: '(380)化工海洋与生命学院 080104 工程力学',
         status: 'not-found',
-        note: '本轮未定位到中央招生入口中可按院系代码380和专业代码080104复核的2026统考计划原表。'
+        note: '学校招生章程明确各专业统考拟招生人数以研招网专业目录公布；研招动态目录可定位080104及初试科目，但当前页面不显示人数，因此2026公开招考计划仍留空。'
       }
     ]
   },
@@ -1833,32 +1898,72 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     ]
   },
   '343703': {
-    planned: null,
-    retest: null,
+    planned: 2,
+    retest: 2,
     admitted: null,
-    scoreLine: null,
+    scoreLine: 315,
+    retestHighestScore: 384,
+    retestLowestScore: 345,
     evidence: [
       {
-        type: 'retest-rule',
-        title: '哈尔滨工业大学土木工程学院2026年硕士招生复试参考',
-        url: 'https://civil.hit.edu.cn/2025/1229/c8480a385521/page.htm',
-        publishedAt: '2025-12-29',
-        accessedAt,
+        type: 'catalog',
+        title: '哈尔滨工业大学土木工程学院2026年全日制硕士研究生招生复试及录取方案（含深圳、威海校区）',
+        url: 'https://civil.hit.edu.cn/2026/0321/c8439a388638/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-18',
+        year: '2026',
+        scope: '(009)土木工程学院 080100 力学（校本部）',
+        status: 'verified',
+        value: 2,
+        note: '方案“统考招生计划”表列明校本部力学（工学硕士）计划2人；强军计划、少数民族人才骨干专项计划不列入该计划。'
+      },
+      {
+        type: 'score-line',
+        title: '哈尔滨工业大学土木工程学院2026年全日制硕士研究生招生复试及录取方案（含深圳、威海校区）',
+        url: 'https://civil.hit.edu.cn/2026/0321/c8439a388638/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-18',
         year: '2026',
         scope: '(009)土木工程学院 080100 力学',
-        status: 'partial',
-        note: '已定位学院复试参考，但页面不含复试名单或拟录取人数。'
+        status: 'verified',
+        value: 315,
+        note: '方案复试资格线表明确0801力学总分315，政治50、外语45、业务课一70、业务课二70。'
+      },
+      {
+        type: 'retest',
+        title: '2026年哈尔滨工业大学土木工程学院硕士研究生招生复试名单',
+        url: 'https://civil.hit.edu.cn/2026/0321/c8439a388638/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-18',
+        year: '2026',
+        scope: '(009)土木工程学院 080100 力学（校本部）',
+        status: 'verified',
+        value: 2,
+        highestScore: 384,
+        lowestScore: 345,
+        note: '页面附件ZIP内复试名单PDF第1页逐行核验，080100力学共2名统考考生，初试总分分别为384、345。'
+      },
+      {
+        type: 'retest-rule',
+        title: '哈尔滨工业大学土木工程学院2026年全日制硕士研究生招生复试及录取方案（含深圳、威海校区）',
+        url: 'https://civil.hit.edu.cn/2026/0321/c8439a388638/page.htm',
+        publishedAt: '2026-03-21',
+        accessedAt: '2026-07-18',
+        year: '2026',
+        scope: '(009)土木工程学院 080100 力学',
+        status: 'verified',
+        note: '方案明确力学考生选择第四套题，笔试科目为理论力学和材料力学；录取按总成绩由高到低排序。'
       },
       {
         type: 'admitted',
-        title: '土木工程学院硕士研究生招生栏目',
-        url: 'https://civil.hit.edu.cn/8480/list.htm',
+        title: '土木工程学院通知公告',
+        url: 'https://civil.hit.edu.cn/8439/list.htm',
         publishedAt: null,
-        accessedAt,
+        accessedAt: '2026-07-18',
         year: '2026',
         scope: '(009)土木工程学院 080100 力学',
         status: 'not-found',
-        note: '截至访问日期，栏目未找到可对应080100的2026年拟录取名单，人数继续保留待核验。'
+        note: '截至访问日期，学院通知公告和站内全文索引均未公开2026年全日制硕士复试成绩或拟录取名单，不能按计划2人反推拟录取人数。'
       }
     ]
   },
@@ -1866,7 +1971,7 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     planned: null,
     retest: null,
     admitted: null,
-    scoreLine: null,
+    scoreLine: 370,
     evidence: [
       {
         type: 'catalog',
@@ -1890,6 +1995,18 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         status: 'partial',
         value: 310,
         note: '310为学校工学基本线，不等同于209学院080100实际进入复试的院系线。'
+      },
+      {
+        type: 'score-line',
+        title: '中国科学技术大学2026年硕士招生各院系专业分数线',
+        url: 'https://yz.ustc.edu.cn/static/upload/article/file/1773889547295/b05d9857ba9442a2a4906bf67efcd4d0.pdf',
+        publishedAt: '2026-03-19',
+        accessedAt: '2026-07-19',
+        year: '2026',
+        scope: '(209)工程科学学院 080100 力学',
+        status: 'verified',
+        value: 370,
+        note: '官方院系专业分数线PDF第6页列明080100力学单科线50/50/80/80分、总分线370分。'
       },
       {
         type: 'retest-rule',
@@ -2197,11 +2314,39 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
     ]
   },
   '331532': {
-    planned: null,
-    retest: null,
+    planned: 3,
+    retest: 3,
     admitted: null,
     scoreLine: null,
+    retestHighestScore: 389,
+    retestLowestScore: 337,
     evidence: [
+      {
+        type: 'catalog',
+        title: '山东大学土建与水利学院2026年硕士研究生招生复试录取办法',
+        url: 'https://www.tjsl.sdu.edu.cn/info/1049/14368.htm',
+        publishedAt: '2026-03-24',
+        accessedAt: '2026-07-19',
+        year: '2026',
+        scope: '(046)土建与水利学院 080100 力学',
+        status: 'verified',
+        value: 3,
+        note: '正文招生计划表按专业代码列明080100力学公开招考计划3人。'
+      },
+      {
+        type: 'retest',
+        title: '山东大学土建与水利学院2026年硕士研究生招生考试复试名单',
+        url: 'https://www.tjsl.sdu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1400494133&wbfileid=16795712',
+        publishedAt: '2026-03-24',
+        accessedAt: '2026-07-19',
+        year: '2026',
+        scope: '(046)土建与水利学院 080100 力学',
+        status: 'verified',
+        value: 3,
+        highestScore: 389,
+        lowestScore: 337,
+        note: '官网附件第1页逐行列出3名080100考生，初试总分分别为389、388、337分。'
+      },
       {
         type: 'score-line',
         title: '山东大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求',
@@ -2211,7 +2356,7 @@ export const officialEvidenceByRecord: Record<string, OfficialRecordData> = {
         year: '2026',
         scope: '(016)土建与水利学院 080100 力学',
         status: 'partial',
-        note: '学校页仅给基本要求，学院现存公开页面未保留可唯一对应080100的专业线与复试名单。'
+        note: '学校页仅给基本要求，学院复试办法未另列080100专业线，因此不把学校基本线或名单最低分写为专业线。'
       },
       {
         type: 'admitted',

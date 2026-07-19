@@ -25,6 +25,13 @@ const retestDetails = [
   }
 ]
 
+const hitAirspaceMechanicsExams = [
+  '(101)思想政治理论',
+  '(201)英语（一）或(202)俄语或(203)日语',
+  '(301)数学（一）',
+  '(815)基础力学（理论力学和材料力学各占50%）'
+]
+
 const makeRecord = (
   majorCode: string,
   majorName: string,
@@ -46,7 +53,7 @@ const makeRecord = (
   isDoubleFirstClass: true,
   planned,
   basicRetestLine: null,
-  scoreLine: 322,
+  averageScore: null,
   retest: null,
   admitted,
   retestAdmissionRatio: null,
@@ -59,16 +66,8 @@ const makeRecord = (
   history: [
     {
       year: '2026',
-      politics: 33,
-      foreignLanguage: 33,
-      subjectOne: 50,
-      subjectTwo: 50,
-      scoreLine: 322,
       retestCount: null,
-      admittedCount: admitted,
-      retestAdmissionRatio: null,
-      firstChoiceAdmitted: admitted,
-      transferAdmitted: 0
+      admittedCount: admitted
     }
   ],
   plannedHistory: [{ year: '2026', value: planned }]
@@ -89,16 +88,16 @@ const hitAirspaceMechanicsRecord: SourceAdmissionRecord = {
   isDoubleFirstClass: true,
   planned: 47,
   basicRetestLine: null,
-  scoreLine: 355,
+  averageScore: null,
   retest: 49,
   admitted: 47,
-  retestAdmissionRatio: '1:1.0',
+  retestAdmissionRatio: null,
   aggregatorDetail: 'https://sa.hit.edu.cn/2026/0322/c6582a388652/page.htm',
   studyMode: '全日制',
   directions: [
-    { name: '11 空天力学', exams: [] },
-    { name: '42 空天力学（郑州基地）', exams: [] },
-    { name: '61 空天力学（苏州基地）', exams: [] }
+    { name: '11 空天力学', exams: hitAirspaceMechanicsExams },
+    { name: '42 空天力学（郑州基地）', exams: hitAirspaceMechanicsExams },
+    { name: '61 空天力学（苏州基地）', exams: hitAirspaceMechanicsExams }
   ],
   enrollmentNote:
     '仅统计085500机械中官网明确标为“空天力学”的三个方向；计划分别为10、13、24人，不代表航天学院085500机械专业的全部方向。',
@@ -117,16 +116,8 @@ const hitAirspaceMechanicsRecord: SourceAdmissionRecord = {
   history: [
     {
       year: '2026',
-      politics: 50,
-      foreignLanguage: 45,
-      subjectOne: 70,
-      subjectTwo: 70,
-      scoreLine: 355,
       retestCount: 49,
-      admittedCount: 47,
-      retestAdmissionRatio: '1:1.0',
-      firstChoiceAdmitted: 47,
-      transferAdmitted: 0
+      admittedCount: 47
     }
   ],
   plannedHistory: [{ year: '2026', value: 47 }]

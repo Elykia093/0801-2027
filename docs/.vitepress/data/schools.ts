@@ -1,9 +1,15 @@
+import { historicalEvidenceByRecord } from './historical-evidence.ts'
 import { officialEvidenceByRecord } from './official-evidence.ts'
+import { emptyReferenceMaterial, referenceMaterialOverrides } from './reference-materials.ts'
 import { manualAdmissionRecords } from './manual-records.ts'
 import { admissionRecords as generatedAdmissionRecords } from './source-records.generated.ts'
 import type {
+  AdmissionHistory,
   AdmissionRecord,
   CoverageMetric,
+  HistoricalEvidence,
+  OfficialRecordData,
+  PlannedHistory,
   SchoolAdmission,
   SourceAdmissionRecord
 } from './models.ts'
@@ -12,9 +18,15 @@ export type {
   AdmissionRecord,
   AdmissionHistory,
   CoverageMetric,
+  HistoricalEvidence,
   OfficialEvidence,
   OfficialEvidenceStatus,
   OfficialEvidenceType,
+  ReferenceMaterialBook,
+  ReferenceMaterialCollection,
+  ReferenceMaterialLead,
+  ReferenceMaterialSource,
+  ReferenceMaterialStatus,
   SchoolAdmission
 } from './models.ts'
 
@@ -37,6 +49,120 @@ export const isProfessionalDegree = (majorCode: string) => majorCode.startsWith(
 export const schoolSearchAliases: Record<string, string[]> = {
   '80007': ['国科大', '国科大力学所', '中科院力学所']
 }
+
+export const historyYears = ['2023', '2024', '2025', '2026'] as const
+
+const historyValuesFromEvidence = (
+  evidence: HistoricalEvidence[]
+): Partial<Omit<AdmissionHistory, 'year'>> =>
+  evidence.reduce(
+    (values, item) => ({
+      ...values,
+      ...(item.values.politicsAverage !== undefined && {
+        politicsAverage: item.values.politicsAverage
+      }),
+      ...(item.values.foreignLanguageAverage !== undefined && {
+        foreignLanguageAverage: item.values.foreignLanguageAverage
+      }),
+      ...(item.values.subjectOneAverage !== undefined && {
+        subjectOneAverage: item.values.subjectOneAverage
+      }),
+      ...(item.values.subjectTwoAverage !== undefined && {
+        subjectTwoAverage: item.values.subjectTwoAverage
+      }),
+      ...(item.values.averageScore !== undefined && { averageScore: item.values.averageScore }),
+      ...(item.values.admittedHighestScore !== undefined && {
+        admittedHighestScore: item.values.admittedHighestScore
+      }),
+      ...(item.values.admittedLowestScore !== undefined && {
+        admittedLowestScore: item.values.admittedLowestScore
+      }),
+      ...(item.values.retestCount !== undefined && { retestCount: item.values.retestCount }),
+      ...(item.values.admittedCount !== undefined && { admittedCount: item.values.admittedCount }),
+      ...(item.values.retestAdmissionRatio !== undefined && {
+        retestAdmissionRatio: item.values.retestAdmissionRatio
+      }),
+      ...(item.values.firstChoiceAdmitted !== undefined && {
+        firstChoiceAdmitted: item.values.firstChoiceAdmitted
+      }),
+      ...(item.values.transferAdmitted !== undefined && {
+        transferAdmitted: item.values.transferAdmitted
+      })
+    }),
+    {}
+  )
+
+const normalizeHistory = (
+  history: AdmissionHistory[],
+  evidence: HistoricalEvidence[],
+  official: OfficialRecordData | undefined
+): AdmissionHistory[] =>
+  historyYears.map((year) => {
+    const sourceValues = history.find((item) => item.year === year)
+    const yearEvidence = evidence.filter(
+      (item) => item.year === year && item.status !== 'not-found'
+    )
+    const evidenceValues = historyValuesFromEvidence(yearEvidence)
+    const officialHistoryValues = year === '2026' ? (official?.historyValues ?? {}) : {}
+    const evidenceHasRetest = yearEvidence.some(
+      (item) => item.values.retestCount !== undefined
+    )
+    const evidenceHasAdmitted = yearEvidence.some(
+      (item) => item.values.admittedCount !== undefined
+    )
+    const officialHasRetest =
+      year === '2026' && official?.retest !== null && official?.retest !== undefined
+    const officialHasAdmitted =
+      year === '2026' && official?.admitted !== null && official?.admitted !== undefined
+    const retestCount = officialHasRetest ? official.retest : evidenceValues.retestCount
+    const admittedCount = officialHasAdmitted ? official.admitted : evidenceValues.admittedCount
+    const hasRetestOverride = officialHasRetest || evidenceHasRetest
+    const hasAdmittedOverride = officialHasAdmitted || evidenceHasAdmitted
+    const evidenceHasRatio = yearEvidence.some(
+      (item) => item.values.retestAdmissionRatio !== undefined
+    )
+    const officialHasRatio = officialHistoryValues.retestAdmissionRatio !== undefined
+    const countOverrideChanged =
+      (hasRetestOverride && retestCount !== sourceValues?.retestCount) ||
+      (hasAdmittedOverride && admittedCount !== sourceValues?.admittedCount)
+
+    return {
+      year,
+      ...(sourceValues ?? {}),
+      ...evidenceValues,
+      ...officialHistoryValues,
+      ...(officialHasRetest && { retestCount: official.retest }),
+      ...(officialHasAdmitted && { admittedCount: official.admitted }),
+      ...(!officialHasRatio && !evidenceHasRatio && countOverrideChanged && {
+        retestAdmissionRatio: null
+      })
+    }
+  })
+
+const normalizePlannedHistory = (
+  history: PlannedHistory[],
+  evidence: HistoricalEvidence[],
+  official: OfficialRecordData | undefined
+): PlannedHistory[] =>
+  historyYears.map((year) => {
+    const evidenceValue = evidence
+      .filter((item) => item.year === year && item.status !== 'not-found')
+      .map((item) => item.values.planned)
+      .filter((value): value is number => value !== undefined)
+      .at(-1)
+    const officialValue = year === '2026' ? official?.planned : undefined
+    return {
+      year,
+      value: officialValue ?? evidenceValue ?? history.find((item) => item.year === year)?.value ?? null
+    }
+  })
+
+export const hasHistoryValues = (record: Pick<SourceAdmissionRecord, 'history'>) =>
+  record.history.some((item) =>
+    Object.entries(item).some(
+      ([key, value]) => key !== 'year' && value !== null && value !== undefined
+    )
+  )
 
 const officialPortals: Record<string, string> = {
   '80007': 'https://www.imech.ac.cn/edu/zsjy/zs/sszsxx/',
@@ -87,15 +213,20 @@ const aggregateMetric = (
 
 const admissionRecords: AdmissionRecord[] = [...generatedAdmissionRecords, ...manualAdmissionRecords].map((record) => {
   const official = officialEvidenceByRecord[record.id]
+  const historicalEvidence = historicalEvidenceByRecord[record.id] ?? []
   return {
     ...record,
+    history: normalizeHistory(record.history, historicalEvidence, official),
+    plannedHistory: normalizePlannedHistory(record.plannedHistory, historicalEvidence, official),
     officialPlanned: official?.planned ?? null,
     officialRetest: official?.retest ?? null,
     officialAdmitted: official?.admitted ?? null,
     officialScoreLine: official?.scoreLine ?? null,
     officialRetestHighestScore: official?.retestHighestScore ?? null,
     officialRetestLowestScore: official?.retestLowestScore ?? null,
-    officialEvidence: official?.evidence ?? []
+    officialEvidence: official?.evidence ?? [],
+    historicalEvidence,
+    referenceMaterial: emptyReferenceMaterial(referenceMaterialOverrides[record.id])
   }
 })
 
@@ -145,10 +276,11 @@ export const snapshot = {
   plannedKnownRecords: knownCount((record) => record.planned !== null),
   retestKnownRecords: knownCount((record) => record.retest !== null),
   admittedKnownRecords: knownCount((record) => record.admitted !== null),
-  scoreLineKnownRecords: knownCount((record) => record.scoreLine !== null),
+  averageScoreKnownRecords: knownCount((record) => record.averageScore !== null),
   directionKnownRecords: knownCount((record) => record.directions.length > 0),
   retestDetailKnownRecords: knownCount((record) => record.retestDetails.length > 0),
-  historyKnownRecords: knownCount((record) => record.history.length > 0),
+  historyKnownRecords: knownCount(hasHistoryValues),
+  historicalEvidenceRecords: knownCount((record) => record.historicalEvidence.length > 0),
   officialEvidenceRecords: knownCount((record) => record.officialEvidence.length > 0),
   officialRangeRecordCount: knownCount(
     (record) =>
@@ -163,6 +295,13 @@ export const snapshot = {
       record.officialRetestHighestScore,
       record.officialRetestLowestScore
     ].some((value) => value !== null)
+  ),
+  referenceMaterialLeadRecords: knownCount((record) => record.referenceMaterial.lead !== undefined),
+  referenceMaterialPartialRecords: knownCount(
+    (record) => record.referenceMaterial.status === 'partial'
+  ),
+  referenceMaterialSettledRecords: knownCount((record) =>
+    ['verified', 'explicitly-not-designated', 'not-published'].includes(record.referenceMaterial.status)
   )
 } as const
 
@@ -173,9 +312,10 @@ export const referenceBaseline = [
   { field: '研究方向与初试科目', reference: true, site: true, note: '逐方向保留完整科目组合' },
   { field: '招生人数与推免口径', reference: true, site: true, note: '同时保留聚合人数和页面原始说明' },
   { field: '复试细则摘要', reference: true, site: true, note: '含总成绩公式、复试内容、参考书目等公开项' },
-  { field: '复试基本线、复试线', reference: '部分', site: true, note: '本站并列展示两个来源字段，避免混淆' },
-  { field: '历年招生计划', reference: true, site: true, note: '按来源页已有年份展示' },
-  { field: '单科线、总分线、最高/最低分', reference: true, site: true, note: '按年完整展开' },
+  { field: '独立复试参考书目状态与官网定位', reference: false, site: true, note: '44条记录逐一管理，聚合线索与官网原文分开保存' },
+  { field: '复试基本线、拟录取初试平均分', reference: '部分', site: true, note: '来源统计与官网复试线分开展示，避免混淆' },
+  { field: '历年招生计划', reference: true, site: true, note: '固定展示 2023—2026，缺失值标记待核验' },
+  { field: '拟录取各科平均分、初试平均/最高/最低分', reference: true, site: true, note: '按年展开来源统计，官网复试线另列证据' },
   { field: '复试、录取、复录比、一志愿、调剂', reference: true, site: true, note: '按年完整展开并保留缺失值' },
   { field: '26 所 985、国科大力学所与官网核验专硕横向筛选和汇总', reference: false, site: true, note: '支持专业、完整度和人数排序' },
   { field: '逐条官网原文与核验值', reference: false, site: true, note: '展示官网计划、复试、拟录取、分数线、名单初试分范围及冲突说明' },
